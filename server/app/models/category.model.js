@@ -4,9 +4,12 @@ const Category = mongoose.model(
   'Category',
   new mongoose.Schema({
     name: String,
-    isDeleted: Boolean,
+    isDeleted: {
+      type: Boolean,
+      default: false,
+    },
     image: String,
   }),
 )
 
-module.exports = Category
+module.exports = { Category }
