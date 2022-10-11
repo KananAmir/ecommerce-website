@@ -7,7 +7,7 @@ function LayoutAdmin({children}) {
 
     return (
         <>
-            <AdminHeader>I am Header of Admin</AdminHeader>
+            <AdminHeader/>
                 <main>
                     {children}
                 </main>
