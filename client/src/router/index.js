@@ -22,7 +22,7 @@ function Routing() {
                 <Route path='/' element = {<HomePage/>} />
                 <Route path='/login' element = {<SiteLoginPage/>} />
                 <Route path='/signup' element = {<SiteSignUpPage/>} />
-                <Route path='/product-detail/:name/:id' element = {<ProductDetail/>} />
+                <Route path='/product-detail/:id/:name' element = {<ProductDetail/>} />
                 <Route path='/user-detail' element = {<UserDetail/>} />
                 <Route path='/cart' element = {<CartPage/>} />
 
