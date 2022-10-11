@@ -17,12 +17,18 @@ const SiteSignUpPage = () => {
       surname: "",
       username: "",
       address: "",
+      email: "",
       password: "",
       passwordConfirm: "",
     },
     validationSchema: Yup.object({
-      fullname: Yup.string()
-        .min(3, "Must be at least 3 characters")
+      name: Yup.string()
+        .min(3, "name must be at least 3 characters"),
+      surname: Yup.string()
+        .min(3, "surname must be at least 3 characters"),
+      email: Yup.string()
+        .email("invalid email format")
+        .min(3, "surname must be at least 3 characters")
         .required("Required"),
       username: Yup.string()
         .min(3, "Must be at least 3 characters")
@@ -30,7 +36,7 @@ const SiteSignUpPage = () => {
       password: Yup.string()
         .matches(
           /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-          "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
+          "must contain 8 Characters, 1 Uppercase, 1 Lowercase, 1 Number and 1 Special Case Character"
         )
         .required("Required"),
       passwordConfirm: Yup.string()
@@ -39,32 +45,9 @@ const SiteSignUpPage = () => {
     }),
     onSubmit: (values) => {
       console.log(values);
-      if (checkRef.current) {
-        setAuthor(true);
-      } else {
-        setAuthor(false);
-      }
     },
   });
 
-  const btnRef = useRef();
-  const checkRef = useRef(false);
-  const [author, setAuthor] = useState(false);
-
-  const handleBtnChange = (e) => {
-    if (e.target.checked) {
-      btnRef.current.textContent = "Next";
-      checkRef.current = true;
-    } else {
-      btnRef.current.textContent = "SignUp";
-      checkRef.current = false;
-    }
-  };
-
-  const goBack = ()=> {
-    setAuthor(false)
-    checkRef.current = false
-  }
   return (
     <LayoutSite>
        <Box
@@ -81,8 +64,7 @@ const SiteSignUpPage = () => {
     >
       <Box component="form" onSubmit={formik.handleSubmit} style={{}}>
         <h2 style={{ fontSize: "40px" }}>Sign Up</h2>
-        {author === false && (
-          <>
+          {/* name */}
             <FormControl
               fullWidth
               style={{ height: "50px" }}
@@ -91,18 +73,41 @@ const SiteSignUpPage = () => {
               onSubmit={formik.handleSubmit}
             >
               <InputLabel htmlFor="standard-adornment-amount">
-                Full Name
+                Name
               </InputLabel>
               <Input
                 id="standard-adornment-amount"
-                {...formik.getFieldProps("fullname")}
+                {...formik.getFieldProps("name")}
               />
-              {formik.touched.username && formik.errors.username ? (
+              {formik.touched.name && formik.errors.name ? (
                 <p style={{ color: "red", fontSize: "13px" }}>
-                  {formik.errors.username}
+                  {formik.errors.name}
                 </p>
               ) : null}
             </FormControl>
+          {/* surname */}
+          <FormControl
+              fullWidth
+              style={{ height: "50px" }}
+              sx={{ mt: 1 }}
+              variant="standard"
+              onSubmit={formik.handleSubmit}
+            >
+              <InputLabel htmlFor="standard-adornment-amount">
+                Surname
+              </InputLabel>
+              <Input
+                id="standard-adornment-amount"
+                {...formik.getFieldProps("surname")}
+              />
+              {formik.touched.surname && formik.errors.surname ? (
+                <p style={{ color: "red", fontSize: "13px" }}>
+                  {formik.errors.surname}
+                </p>
+              ) : null}
+            </FormControl>
+
+          {/* username */}
             <FormControl
               fullWidth
               style={{ height: "50px" }}
@@ -111,7 +116,7 @@ const SiteSignUpPage = () => {
               onSubmit={formik.handleSubmit}
             >
               <InputLabel htmlFor="standard-adornment-amount">
-                UserName
+                Username
               </InputLabel>
               <Input
                 id="standard-adornment-amount"
@@ -123,6 +128,8 @@ const SiteSignUpPage = () => {
                 </p>
               ) : null}
             </FormControl>
+          
+          
             <FormControl
               fullWidth
               style={{ height: "70px" }}
@@ -166,50 +173,10 @@ const SiteSignUpPage = () => {
               ) : null}
             </FormControl>
             <Box display="flex" justifyContent="space-between" sx={{ mt: 5 }}>
-              <FormControlLabel
-                control={<Checkbox />}
-                label="Author"
-                onChange={(e) => handleBtnChange(e)}
-              />
-              <Button variant="contained" type="submit" ref={btnRef}>
+              <Button variant="contained" type="submit">
                 SignUp
               </Button>
             </Box>
-          </>
-        )}
-        {author && (
-          <>
-            <FormControl
-              fullWidth
-              style={{ height: "50px" }}
-              sx={{ mt: 1 }}
-              variant="standard"
-              onSubmit={formik.handleSubmit}
-            >
-              <InputLabel htmlFor="standard-adornment-amount">
-                Full Name
-              </InputLabel>
-              <Input
-                id="standard-adornment-amount"
-                name="stagename"
-                {...formik.getFieldProps("stagename")}
-              />
-              {formik.touched.stagename && formik.errors.stagename ? (
-                <p style={{ color: "red", fontSize: "13px" }}>
-                  {formik.errors.stagename}
-                </p>
-              ) : null}
-            </FormControl>
-            <Box display="flex" justifyContent="space-between" sx={{ mt: 5 }}>
-              <Button variant="text" sx={{p: '0'}} onClick = {()=> goBack()}>
-                Back
-              </Button>
-              <Button variant="contained" type="submit" ref={btnRef}>
-                SignUp
-              </Button>
-            </Box>
-          </>
-        )}
       </Box>
     </Box>
     </LayoutSite>
