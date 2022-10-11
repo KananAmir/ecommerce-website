@@ -16,6 +16,16 @@ const Product = mongoose.model(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Brand',
     },
+    images: [
+      {
+        type: String,
+        isPoster: {
+          type: Boolean,
+          default: false,
+        },
+        src: String,
+      },
+    ],
     isDeleted: Boolean,
   }),
 )
