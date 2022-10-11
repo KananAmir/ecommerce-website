@@ -1,19 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="90c5657e-de37-4943-beed-05b764d1925e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/client/src/assets/default_avatar.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/assets/shoplogo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/app/validation/brand.validation.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/app/validation/category.validation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/site/site-card/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/site/site-card/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/site/site-footer/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/site/site-footer/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/site/site-header/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/site/site-header/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/site/home/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/site/home/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/app/models/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/app/models/index.js" afterDir="false" />
-    </list>
+    <list default="true" id="90c5657e-de37-4943-beed-05b764d1925e" name="Changes" comment="fix: bugs fixed" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -73,8 +61,24 @@
       <workItem from="1665469446400" duration="7681000" />
       <workItem from="1665479032997" duration="73000" />
       <workItem from="1665479110318" duration="3076000" />
-      <workItem from="1665482775062" duration="933000" />
+      <workItem from="1665482775062" duration="1750000" />
+      <workItem from="1665484614515" duration="2052000" />
     </task>
+    <task id="LOCAL-00001" summary="fix-bug fix home page">
+      <created>1665485113971</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1665485113971</updated>
+    </task>
+    <task id="LOCAL-00002" summary="fix: bugs fixed">
+      <created>1665486819119</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1665486819119</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -90,5 +94,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="fix-bug fix home page" />
+    <MESSAGE value="fix: bugs fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: bugs fixed" />
   </component>
 </project>

@@ -1,9 +1,12 @@
 import React from 'react'
 import LayoutAdmin from "../../../layout/LayoutAdmin";
+import NewProductForm from './addproduct';
 
 const AddProduct = () => {
     return (
-        <LayoutAdmin>Admin Add Product</LayoutAdmin>
+        <LayoutAdmin>
+            <NewProductForm/>
+        </LayoutAdmin>
     )
 }
 
