@@ -1,8 +1,9 @@
 import React from 'react'
+import LayoutSite from "../../../layout/LatoutSite";
 
 const CartPage = () => {
   return (
-    <div>CartPage</div>
+    <LayoutSite>CartPage</LayoutSite>
   )
 }
 

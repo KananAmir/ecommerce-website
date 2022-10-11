@@ -1,8 +1,9 @@
 import React from 'react'
+import LayoutSite from "../../../layout/LatoutSite";
 
 const HomePage = () => {
   return (
-    <div>HomePage</div>
+    <LayoutSite>HomePage</LayoutSite>
   )
 }
 

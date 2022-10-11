@@ -1,8 +1,9 @@
 import React from 'react'
+import LayoutSite from "../../../layout/LatoutSite";
 
 const ProductDetail = () => {
   return (
-    <div>ProductDetail</div>
+    <LayoutSite>ProductDetail</LayoutSite>
   )
 }
 
