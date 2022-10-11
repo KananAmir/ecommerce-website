@@ -13,6 +13,7 @@ import ProductsListPage from "../pages/admin/products-list-page";
 import AdminLoginPage from "../pages/admin/login-page";
 import AddProduct from "../pages/admin/add-product";
 import EditProduct from "../pages/admin/edit-product";
+import NotFound from "pages/site/notfound";
 
 function Routing() {
 
@@ -25,6 +26,7 @@ function Routing() {
                 <Route path='/product-detail/:name/:id' element = {<ProductDetail/>} />
                 <Route path='/user-detail' element = {<UserDetail/>} />
                 <Route path='/cart' element = {<CartPage/>} />
+                <Route path='*' element = {<NotFound/>} />
 
 
                 <Route path='/admin' element = {<AdminHomePage/>} />
