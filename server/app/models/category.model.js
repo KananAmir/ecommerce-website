@@ -8,7 +8,6 @@ const Category = mongoose.model(
       type: Boolean,
       default: false,
     },
-    image: String,
   }),
 )
 
