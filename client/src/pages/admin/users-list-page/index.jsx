@@ -3,8 +3,10 @@ import LayoutAdmin from "../../../layout/LayoutAdmin";
 
 const UsersListPage = () => {
     return (
-        <LayoutAdmin>Admin UsersListPage</LayoutAdmin>
+        <LayoutAdmin>
+            user list page
+        </LayoutAdmin>
     )
 }
 
-export default UsersListPage
+export default UsersListPage;

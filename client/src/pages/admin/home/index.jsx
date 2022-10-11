@@ -7,4 +7,4 @@ const AdminHomePage = () => {
   )
 }
 
-export default AdminHomePage
+export default AdminHomePage;
