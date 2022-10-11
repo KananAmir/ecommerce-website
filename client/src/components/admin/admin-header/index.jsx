@@ -1,29 +1,64 @@
 import React, { useState, useEffect } from 'react';
-import Button from '@mui/material/Button';
-import ButtonGroup from '@mui/material/ButtonGroup';
-import Box from '@mui/material/Box';
-import { useNavigate } from 'react-router';
+import { Box, List, Divider, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
+import HomeIcon from '@mui/icons-material/Home';
+import GroupIcon from '@mui/icons-material/Group';
+import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
+import DiscountIcon from '@mui/icons-material/Discount';
+import AddIcon from '@mui/icons-material/Add';
+import EditIcon from '@mui/icons-material/Edit';
+import { Link } from "react-router-dom";
+
 
 const AdminHeader = () => {
+  const listOne = [
+      {title: 'Home', to: "/admin", icon: <HomeIcon/>},
+      {title: 'Users', to: "/admin/users-list-page", icon: <GroupIcon/>},
+      {title: 'Products', to: "/admin/products-list-page", icon: <ProductionQuantityLimitsIcon/>},
+      {title: 'Discounts', to: "/", icon: <DiscountIcon/>}
+  ]
 
-  const navigate = useNavigate();
-
-  const handleClick = (event) => {
-    event.target.value ?
-    navigate(`/admin/${event.target.value}`) : navigate(`/admin`)
-  }
+    const listTwo = [
+      {title: 'Add Product', to: "/admin/products-add", icon: <AddIcon/>},
+      {title: 'Edit Product', to: "/admin/products-edit", icon: <EditIcon/>},
+      // {title: 'Add Category', to: "/admin/products-edit", icon: <EditIcon/>},
+    ]
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', '& > *': { m: 1,},}}>
-      <ButtonGroup variant="text" aria-label="text button group">
-        <Button onClick={handleClick}>Home</Button>
-        <Button onClick={handleClick} value={'users-list-page'}>Users</Button>
-        <Button onClick={handleClick} value={'products-list-page'}>Products</Button>
-        <Button onClick={handleClick} value={'products-add'}>Add Product</Button>
-        <Button onClick={handleClick} value={'products-edit'}>Edit Product</Button>
-        <Button onClick={handleClick} value={'discounts'}>Discounts</Button>
-      </ButtonGroup>
-    </Box>
+      <Box sx={{ overflow: 'auto' }}>
+        <List>
+          {
+            listOne.map(item => {
+              return <Link to={item.to}>
+                <ListItem disablePadding>
+                  <ListItemButton>
+                    <ListItemIcon>
+                      {item.icon}
+                    </ListItemIcon>
+                    <ListItemText primary={item.title} />
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+            })
+          }
+        </List>
+        <Divider />
+        <List>
+            {
+                listTwo.map((item) => {
+                    return <Link to={item.to}>
+                        <ListItem disablePadding>
+                            <ListItemButton>
+                                <ListItemIcon>
+                                    {item.icon}
+                                </ListItemIcon>
+                                <ListItemText primary={item.title} />
+                            </ListItemButton>
+                        </ListItem>
+                    </Link>
+                })
+            }
+        </List>
+      </Box>
   );
 }
 
