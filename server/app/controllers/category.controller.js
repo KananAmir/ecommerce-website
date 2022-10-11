@@ -1,6 +1,6 @@
 const { Category } = require('../models/category.model')
 
-const categoryService = {
+const categoryController = {
   getAll: (req, res) => {
     Category.find({}, (err, docs) => {
       if (!err) {
@@ -61,5 +61,5 @@ const categoryService = {
 }
 
 module.exports = {
-  categoryService,
+  categoryController,
 }
