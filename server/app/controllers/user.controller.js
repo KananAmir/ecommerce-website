@@ -7,7 +7,7 @@ exports.allAccess = (req, res) => {
   };
   
   exports.adminBoard = (req, res) => {
-    res.status(200).send("Admin Content.");
+    res.status(200).send("admin Content.");
   };
   
   exports.moderatorBoard = (req, res) => {
