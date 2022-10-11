@@ -7,18 +7,18 @@ const initialState = {
 export const productsReducer = (state = initialState, action) => {
 
     switch (action.type) {
-        case 'GET_DRIVERS_START':
+        case 'GET_PRODUCTS_START':
             return {
                 ...state,
                 loading: true
             }
-        case 'GET_DRIVERS_SUCCESS':
+        case 'GET_PRODUCTS_SUCCESS':
             return {
                 ...state,
                 loading: false,
                 data: action.payload
             }
-        case 'GET_DRIVERS_FAIL':
+        case 'GET_PRODUCTS_FAIL':
             return {
                 ...state,
                 loading: false,
