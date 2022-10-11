@@ -1,8 +1,8 @@
 import React from 'react'
 
-const AdminFooter = () => {
+const AdminFooter = ({children}) => {
   return (
-    <div>Admin Footer</div>
+    <div>{children}</div>
   )
 }
 
