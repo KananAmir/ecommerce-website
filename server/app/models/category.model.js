@@ -8,8 +8,7 @@ const Category = mongoose.model(
       type: Boolean,
       default: false,
     },
-    image: String,
   }),
 )
 
-module.exports = Category
+module.exports = { Category }

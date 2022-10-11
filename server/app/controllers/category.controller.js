@@ -1,9 +1,7 @@
-const res = require('express/lib/response')
 const { Category } = require('../models/category.model')
 
-const categoryService = {
+const categoryController = {
   getAll: (req, res) => {
-    console.log(Category)
     Category.find({}, (err, docs) => {
       if (!err) {
         res.json(docs)
@@ -26,7 +24,6 @@ const categoryService = {
   add: (req, res) => {
     let category = new Category({
       name: req.body.name,
-      description: req.body.description,
     })
 
     category.save((err, doc) => {
@@ -37,8 +34,32 @@ const categoryService = {
       }
     })
   },
+  edit: (req, res) => {
+    let id = req.params.id
+
+    Category.findByIdAndUpdate(id, { name: req.body.name }, function (
+      err,
+      docs,
+    ) {
+      if (err) {
+        console.log(err)
+      } else {
+        console.log(docs)
+      }
+      res.send('Category Edited !')
+    })
+  },
+  delete: (req, res) => {
+    let id = req.params.id
+
+    Category.findByIdAndDelete(id, (err, doc) => {
+      if (!err) {
+        res.json('Category Deleted !')
+      }
+    })
+  },
 }
 
 module.exports = {
-  categoryService,
+  categoryController,
 }
