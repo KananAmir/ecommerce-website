@@ -6,9 +6,12 @@ const Role = db.role
 var jwt = require('jsonwebtoken')
 var bcrypt = require('bcryptjs')
 
+
+//Sign Up - Register
 exports.signup = (req, res) => {
   const user = new User({
     email: req.body.email,
+    username: req.body.username,
     name: req.body.name || null,
     surname: req.body.surname || null,
     address: req.body.address || null,
@@ -64,6 +67,7 @@ exports.signup = (req, res) => {
   })
 }
 
+//Sign In - Log In
 exports.signin = (req, res) => {
   User.findOne({
     username: req.body.username,
@@ -86,7 +90,7 @@ exports.signin = (req, res) => {
       }
 
       var token = jwt.sign({ id: user.id }, config.secret, {
-        expiresIn: 86400, // 24 hours
+        expiresIn: 259200, // 72 hours
       })
 
       var authorities = []
@@ -99,14 +103,16 @@ exports.signin = (req, res) => {
       res.status(200).send({
         id: user._id,
         username: user.username,
-        fullname: user.fullname,
-        stageName: user.stageName,
+        name: user.name,
+        surname: user.surname,
+        address: user.address,
         email: user.email,
         roles: authorities,
       })
     })
 }
 
+//Sign Out
 exports.signout = async (req, res) => {
   try {
     req.session = null
