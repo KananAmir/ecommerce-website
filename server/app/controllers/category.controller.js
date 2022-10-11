@@ -3,6 +3,7 @@ const { Category } = require('../models/category.model')
 
 const categoryService = {
   getAll: (req, res) => {
+    console.log(Category)
     Category.find({}, (err, docs) => {
       if (!err) {
         res.json(docs)
