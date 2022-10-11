@@ -1,17 +1,17 @@
-import { useState } from 'react'
-import {Link} from "react-router-dom";
 import SiteHeader from '../components/site/site-header'
 import SiteFooter from '../components/site/site-footer'
-
+import CssBaseline from '@mui/material/CssBaseline';
+import Container from '@mui/material/Container';
 
 function LayoutSite({children}) {
 
     return (
         <>
             <SiteHeader/>
-                <main>
+                <CssBaseline />
+                <Container fixed>
                     {children}
-                </main>
+                </Container>
             <SiteFooter/>
         </>
     )

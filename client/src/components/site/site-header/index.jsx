@@ -42,11 +42,11 @@ const SiteHeader = () => {
     setOpen(false);
   };
 
-  const [isLogged, setIsLogged] = useState(true);
+  const [isLogged, setIsLogged] = useState(false);
   return (
     <AppBar
-      position="static"
       sx={{
+        position: "fixed",
         height: "80px",
         background:
           "radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%)",
