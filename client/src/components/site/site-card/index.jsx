@@ -93,7 +93,6 @@ const SiteCard = (props) => {
 export default SiteCard;
 
 
-
 // --------------style-----------------
 const icon = {
     color: '#f44336',

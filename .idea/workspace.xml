@@ -1,24 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="90c5657e-de37-4943-beed-05b764d1925e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/client/src/pages/site/product-detail/index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/app/config/database.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/app/config/env.js" afterDir="false" />
+    <list default="true" id="90c5657e-de37-4943-beed-05b764d1925e" name="Changes" comment="fix-bug fix home page">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/site/site-header/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/site/site-header/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/layout/LatoutSite.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/layout/LatoutSite.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/site/home/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/site/home/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/site/product-detail/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/site/product-detail/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/app/config/auth.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/app/config/auth.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/admin/admin-footer/index.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/site/site-card/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/site/site-card/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/layout/LayoutAdmin.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/layout/LayoutAdmin.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/app/controllers/category.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/app/controllers/category.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/app/controllers/product.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/app/controllers/product.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/app/routes/category.routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/app/routes/category.routes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/app/routes/product.routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/app/routes/product.routes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/app/validation/brand.validation.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/app/validation/brand.validation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/app/models/category.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/app/models/category.model.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,8 +69,16 @@
       <workItem from="1665479032997" duration="73000" />
       <workItem from="1665479110318" duration="3076000" />
       <workItem from="1665482775062" duration="1750000" />
-      <workItem from="1665484614515" duration="398000" />
+      <workItem from="1665484614515" duration="1381000" />
     </task>
+    <task id="LOCAL-00001" summary="fix-bug fix home page">
+      <created>1665485113971</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1665485113971</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -97,5 +94,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="fix-bug fix home page" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix-bug fix home page" />
   </component>
 </project>
