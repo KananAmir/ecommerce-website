@@ -2,7 +2,6 @@ const mongoose = require('mongoose')
 
 const Product = mongoose.model(
   'Product',
-  (ObjectId = Schema.ObjectId),
   new mongoose.Schema({
     name: String,
     desc: String,
@@ -17,6 +16,7 @@ const Product = mongoose.model(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Brand',
     },
+    isDeleted: Boolean,
   }),
 )
 
