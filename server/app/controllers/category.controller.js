@@ -1,3 +1,4 @@
+const res = require('express/lib/response')
 const { Category } = require('../models/category.model')
 
 const categoryService = {
@@ -25,6 +26,7 @@ const categoryService = {
   add: (req, res) => {
     let category = new Category({
       name: req.body.name,
+      description: req.body.description,
     })
 
     category.save((err, doc) => {

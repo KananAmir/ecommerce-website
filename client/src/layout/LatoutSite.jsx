@@ -10,9 +10,7 @@ function LayoutSite({children}) {
             <SiteHeader/>
                 <CssBaseline />
                 <Container fixed>
-                    <main>
-                        {children}
-                    </main>
+                    {children}
                 </Container>
             <SiteFooter/>
         </>

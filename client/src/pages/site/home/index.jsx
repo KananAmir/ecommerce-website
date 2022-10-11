@@ -27,7 +27,7 @@ export default HomePage
 // -----------style----------------
 
 const Container = styled.div`
-  padding: 50px 100px;
+  padding: 130px 0;
   display: flex; 
   justify-content: space-between;
   flex-wrap: wrap;
