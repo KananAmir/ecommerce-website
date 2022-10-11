@@ -80,29 +80,24 @@ const NewProductForm = () => {
                 <br />
                 <Input
                 style={{ width: "200px", margin: "5px" }}
-                type="currency"
-                label="Attribute"
-                variant="outlined"
-                />
-                <br />
-                <TextField
-                style={{ width: "200px", margin: "5px" }}
-                type="text"
-                label="goal stage"
-                variant="outlined"
-                />
-                <br />
-                <TextField
-                style={{ width: "200px", margin: "5px" }}
                 type="number"
-                label="job id"
+                label="Price"
+                placeholder='Price'
                 variant="outlined"
                 />
                 <br />
                 <TextField
                 style={{ width: "200px", margin: "5px" }}
                 type="text"
-                label="job region"
+                label="Descrition"
+                variant="outlined"
+                />
+                <br />
+                <TextField
+                style={{ width: "300px", margin: "5px" }}
+                type="file"
+                accept="image/png, image/jpeg"
+                multiple
                 variant="outlined"
                 />
                 <br />
