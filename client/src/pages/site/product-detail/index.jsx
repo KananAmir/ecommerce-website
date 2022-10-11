@@ -27,7 +27,7 @@ const ProductDetail = () => {
             justifyContent="center"
             style={{ minHeight: '80vh' }}
             >
-          <Grid xs={12} md={6}
+          <Grid item xs={12} md={6}
                 display = "flex"
                 justifyContent = "center">
               <SimpleImageSlider
@@ -42,16 +42,14 @@ const ProductDetail = () => {
                 autoPlay={true}
               />
           </Grid>
-          <Grid xs={12}  md={6} padding="10px">
+          <Grid item xs={12}  md={6} padding="10px">
           <Content >
             <h1 sx={{m: 2}}>{product.name}</h1>
             <h3 sx={{m: 2}}>Category: {product.category}</h3>
             <h4>Price: {product.price} Azn</h4>
             <h4>Stock: {product.stock}</h4>
             <p>Description: {product.description}</p>
-           <div marginTop={20}>
             <Button variant="outlined">Add to Cart <AddShoppingCartIcon /></Button>
-           </div>
           </Content>
           </Grid>
         </Grid>
