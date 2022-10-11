@@ -9,7 +9,6 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import { Input } from '@mui/material';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
-import { Padding } from '@mui/icons-material';
 
 const NewProductForm = () => {
 
