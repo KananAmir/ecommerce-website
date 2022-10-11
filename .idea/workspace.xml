@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="90c5657e-de37-4943-beed-05b764d1925e" name="Changes" comment="fix-bug fix home page">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/admin/admin-footer/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/site/site-card/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/site/site-card/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/layout/LayoutAdmin.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/layout/LayoutAdmin.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/app/controllers/category.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/app/controllers/category.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/app/models/category.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/app/models/category.model.js" afterDir="false" />
-    </list>
+    <list default="true" id="90c5657e-de37-4943-beed-05b764d1925e" name="Changes" comment="fix: bugs fixed" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -69,7 +62,7 @@
       <workItem from="1665479032997" duration="73000" />
       <workItem from="1665479110318" duration="3076000" />
       <workItem from="1665482775062" duration="1750000" />
-      <workItem from="1665484614515" duration="1381000" />
+      <workItem from="1665484614515" duration="2052000" />
     </task>
     <task id="LOCAL-00001" summary="fix-bug fix home page">
       <created>1665485113971</created>
@@ -78,7 +71,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665485113971</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="fix: bugs fixed">
+      <created>1665486819119</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1665486819119</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -97,6 +97,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fix-bug fix home page" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix-bug fix home page" />
+    <MESSAGE value="fix: bugs fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: bugs fixed" />
   </component>
 </project>
