@@ -1,10 +1,10 @@
-const config = require("../config/auth.config");
-const db = require("../models");
-const User = db.user;
-const Role = db.role;
+const config = require('../config/auth.config')
+const db = require('../models')
+const User = db.user
+const Role = db.role
 
-var jwt = require("jsonwebtoken");
-var bcrypt = require("bcryptjs");
+var jwt = require('jsonwebtoken')
+var bcrypt = require('bcryptjs')
 
 exports.signup = (req, res) => {
   const user = new User({
@@ -13,12 +13,12 @@ exports.signup = (req, res) => {
     surname: req.body.surname || null,
     address: req.body.address || null,
     password: bcrypt.hashSync(req.body.password, 8),
-  });
+  })
 
   user.save((err, user) => {
     if (err) {
-      res.status(500).send({ message: err });
-      return;
+      res.status(500).send({ message: err })
+      return
     }
 
     if (req.body.roles) {
@@ -28,77 +28,74 @@ exports.signup = (req, res) => {
         },
         (err, roles) => {
           if (err) {
-            res.status(500).send({ message: err });
-            return;
+            res.status(500).send({ message: err })
+            return
           }
 
-          user.roles = roles.map((role) => role._id);
+          user.roles = roles.map((role) => role._id)
           user.save((err) => {
             if (err) {
-              res.status(500).send({ message: err });
-              return;
+              res.status(500).send({ message: err })
+              return
             }
 
-            res.send({ message: "User was registered successfully!" });
-          });
-        }
-      );
+            res.send({ message: 'User was registered successfully!' })
+          })
+        },
+      )
     } else {
-      Role.findOne({ name: "user" }, (err, role) => {
+      Role.findOne({ name: 'user' }, (err, role) => {
         if (err) {
-          res.status(500).send({ message: err });
-          return;
+          res.status(500).send({ message: err })
+          return
         }
 
-        user.roles = [role._id];
+        user.roles = [role._id]
         user.save((err) => {
           if (err) {
-            res.status(500).send({ message: err });
-            return;
+            res.status(500).send({ message: err })
+            return
           }
 
-          res.send({ message: "User was registered successfully!" });
-        });
-      });
+          res.send({ message: 'User was registered successfully!' })
+        })
+      })
     }
-  });
-};
+  })
+}
 
 exports.signin = (req, res) => {
   User.findOne({
     username: req.body.username,
   })
-    .populate("roles", "-__v")
+    .populate('roles', '-__v')
     .exec((err, user) => {
       if (err) {
-        res.status(500).send({ message: err });
-        return;
+        res.status(500).send({ message: err })
+        return
       }
 
       if (!user) {
-        return res.status(404).send({ message: "User Not found." });
+        return res.status(404).send({ message: 'User Not found.' })
       }
 
-      var passwordIsValid = bcrypt.compareSync(
-        req.body.password,
-        user.password
-      );
+      var passwordIsValid = bcrypt.compareSync(req.body.password, user.password)
 
       if (!passwordIsValid) {
-        return res.status(401).send({ message: "Invalid Password!" });
+        return res.status(401).send({ message: 'Invalid Password!' })
       }
 
       var token = jwt.sign({ id: user.id }, config.secret, {
         expiresIn: 86400, // 24 hours
-      });
+      })
 
-      var authorities = [];
+      var authorities = []
 
       for (let i = 0; i < user.roles.length; i++) {
-        authorities.push("ROLE_" + user.roles[i].name.toUpperCase());
+        authorities.push('ROLE_' + user.roles[i].name.toUpperCase())
       }
 
-      req.session.token = token;
+      req.session.token = token
       res.status(200).send({
         id: user._id,
         username: user.username,
@@ -106,15 +103,15 @@ exports.signin = (req, res) => {
         stageName: user.stageName,
         email: user.email,
         roles: authorities,
-      });
-    });
-};
+      })
+    })
+}
 
 exports.signout = async (req, res) => {
   try {
-    req.session = null;
-    return res.status(200).send({ message: "You've been signed out!" });
+    req.session = null
+    return res.status(200).send({ message: "You've been signed out!" })
   } catch (err) {
-    this.next(err);
+    this.next(err)
   }
-};
+}
