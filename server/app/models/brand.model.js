@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const Brand = mongoose.model(
-  'Category',
+  'Brand',
   new mongoose.Schema({
     name: String,
     isDeleted: Boolean,
@@ -9,4 +9,4 @@ const Brand = mongoose.model(
   }),
 )
 
-module.exports = Brand
+module.exports = { Brand }
