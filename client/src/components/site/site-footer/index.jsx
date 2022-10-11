@@ -1,8 +1,11 @@
-import React from 'react'
+import React from 'react';
 
 const SiteFooter = () => {
+
   return (
-    <div>Site Footer</div>
+      <footer>
+          Site footer
+      </footer>
   )
 }
 
