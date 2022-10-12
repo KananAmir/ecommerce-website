@@ -49,20 +49,20 @@ const ProductsListPage = () => {
   return (
     <LayoutAdmin>
       <Center>
-        <Button
-          sx={{
-            backgroundColor: "#ff8b39",
-            color: "white",
-            padding: "10px 25px",
-            ":hover": {
-              bgcolor: "transparent",
-              color: "#ff8b39",
-              //   border: "1px solid #ff8b39",
-            },
-          }}
-        >
-          Add New Product
-        </Button>
+        {/*<Button*/}
+        {/*  sx={{*/}
+        {/*    backgroundColor: "#ff8b39",*/}
+        {/*    color: "white",*/}
+        {/*    padding: "10px 25px",*/}
+        {/*    ":hover": {*/}
+        {/*      bgcolor: "transparent",*/}
+        {/*      color: "#ff8b39",*/}
+        {/*      //   border: "1px solid #ff8b39",*/}
+        {/*    },*/}
+        {/*  }}*/}
+        {/*>*/}
+        {/*  Add New Product*/}
+        {/*</Button>*/}
       </Center>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
