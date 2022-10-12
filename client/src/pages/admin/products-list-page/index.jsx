@@ -48,29 +48,17 @@ const ProductsListPage = () => {
 
   return (
     <LayoutAdmin>
-      <Center>
-        {/*<Button*/}
-        {/*  sx={{*/}
-        {/*    backgroundColor: "#ff8b39",*/}
-        {/*    color: "white",*/}
-        {/*    padding: "10px 25px",*/}
-        {/*    ":hover": {*/}
-        {/*      bgcolor: "transparent",*/}
-        {/*      color: "#ff8b39",*/}
-        {/*      //   border: "1px solid #ff8b39",*/}
-        {/*    },*/}
-        {/*  }}*/}
-        {/*>*/}
-        {/*  Add New Product*/}
-        {/*</Button>*/}
-      </Center>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
-            <TableRow>
+            <TableRow
+              sx={{
+                "&:first-child th": { fontWeight: "600", fontSize: "16px" },
+              }}
+            >
               <TableCell>Product Name</TableCell>
-              <TableCell align="center">BrandId</TableCell>
-              <TableCell align="center">CategoryId</TableCell>
+              <TableCell align="center">Brand Id</TableCell>
+              <TableCell align="center">Category Id</TableCell>
               <TableCell align="center">Price</TableCell>
               <TableCell align="center">Discount</TableCell>
               <TableCell align="center">Stock</TableCell>
@@ -134,9 +122,3 @@ const ProductsListPage = () => {
 };
 
 export default ProductsListPage;
-
-const Center = styled.div`
-  display: flex;
-  justify-content: center;
-  margin: 20px 0;
-`;
