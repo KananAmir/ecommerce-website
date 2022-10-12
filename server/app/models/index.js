@@ -13,6 +13,8 @@ db.order = require('./order.model')
 db.orderItem = require('./orderItem.model')
 db.brand = require('./brand.model')
 db.category = require('./category.model')
+
+//ROLES
 db.ROLES = ['user', 'admin']
 
 module.exports = db
