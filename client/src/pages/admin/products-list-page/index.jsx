@@ -1,13 +1,7 @@
 import React from "react";
 import LayoutAdmin from "../../../layout/LayoutAdmin";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import { Button } from "@mui/material";
+import { Table, TableBody, TableCell, TableContainer,
+        TableHead, TableRow, Paper, Button,  } from "@mui/material";
 import styled from "@emotion/styled";
 
 const ProductsListPage = () => {
@@ -72,9 +66,7 @@ const ProductsListPage = () => {
                 key={product.name}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
-                <TableCell component="th" scope="row">
-                  {product.name}
-                </TableCell>
+                <TableCell>{product.name}</TableCell>
                 <TableCell align="center">{product.brandId}</TableCell>
                 <TableCell align="center">{product.categoryId}</TableCell>
                 <TableCell align="center">{product.price} AZN</TableCell>
@@ -84,30 +76,30 @@ const ProductsListPage = () => {
                 <TableCell align="center">{product.stock}</TableCell>
                 <TableCell align="center">
                   <Button
-                    sx={{
-                      backgroundColor: "green",
-                      color: "white",
-                      ":hover": {
-                        bgcolor: "transparent",
+                      sx={{
                         color: "green",
-                        //   border: "1px solid #ff8b39",
-                      },
-                    }}
+                        fontWeight: '500',
+                        border: "1px solid green",
+                        ":hover": {
+                          backgroundColor: "green",
+                          color: "white",
+                        },
+                      }}
                   >
                     Edit
                   </Button>
                 </TableCell>
                 <TableCell align="center">
                   <Button
-                    sx={{
-                      backgroundColor: "red",
-                      color: "white",
-                      ":hover": {
-                        bgcolor: "transparent",
+                      sx={{
                         color: "red",
-                        // border: "1px solid red",
-                      },
-                    }}
+                        fontWeight: '500',
+                        border: "1px solid red",
+                        ":hover": {
+                          backgroundColor: "red",
+                          color: "white",
+                        },
+                      }}
                   >
                     Delete
                   </Button>
