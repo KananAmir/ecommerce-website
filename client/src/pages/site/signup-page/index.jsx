@@ -10,7 +10,7 @@ import { IconButton, InputAdornment, TextField } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { Row, Col } from "react-grid-system";
 import styles from "./index.module.css";
-import { Helmet } from "react-helmet"
+import { Helmet } from "react-helmet";
 import axios from "axios";
 
 const SiteSignUpPage = () => {
@@ -63,7 +63,7 @@ const SiteSignUpPage = () => {
   return (
     <>
     <Helmet>
-    <title>Log In | Shop Your Way</title>
+    <title>Sign In | Shop Your Way</title>
     <meta
       name="description"
       content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio quas ea architecto? Dignissimos illo dolorum nesciunt ipsa dicta accusamus repudiandae corporis ad neque voluptatum distinctio a dolor, asperiores, odit aut?"
