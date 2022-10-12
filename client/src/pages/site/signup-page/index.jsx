@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
+import ReCAPTCHA from "react-google-recaptcha"
 import Box from "@mui/material/Box";
 import FormControl from "@mui/material/FormControl";
 import Button from "@mui/material/Button";
@@ -48,6 +49,13 @@ const SiteSignUpPage = () => {
       console.log(values);
     },
   });
+  const captchaRef = useRef(null);
+
+  const handleSubmit = (e) =>{
+    e.preventDefault();
+    const token = captchaRef.current.getValue();
+    captchaRef.current.reset();
+  };
   return (
     <LayoutSite>
       <Box
@@ -226,8 +234,8 @@ const SiteSignUpPage = () => {
              
             </Col>
           </Row>
-
-          <Box display="flex" justifyContent="center" sx={{ mt: 4 }}>
+          <ReCAPTCHA style={{display:'flex',justifyContent:'center',marginTop:'10px'}} sitekey={process.env.REACT_APP_SITE_KEY} ref={captchaRef}/>
+          <Box display="flex" justifyContent="center" sx={{ mt: 1 }}>
             <Button sx={{background:'darkgreen'}} variant="contained" type="submit">
               Sign Up
             </Button>
