@@ -19,6 +19,9 @@ const Footer = styled.footer`
   justify-content: center;
   padding: 13px;
   background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+  position: fixed;
+  width: 100%;
+  bottom: 0;
   
   span{
     font-size: 13px;

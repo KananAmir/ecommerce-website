@@ -2,20 +2,9 @@ import React from "react";
 import styled from "@emotion/styled";
 import LayoutSite from "../../../layout/LatoutSite";
 import SiteCard from "../../../components/site/site-card";
-import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
 const HomePage = () => {
-  const navigate = useNavigate();
-
-  function goToDetails(productId, productName) {
-    navigate(
-      `/product-detail/${productId}/${productName
-        .toLocaleLowerCase("en-US")
-        .split(" ")
-        .join("-")}`
-    );
-  }
   return (
     <>
       <Helmet>
