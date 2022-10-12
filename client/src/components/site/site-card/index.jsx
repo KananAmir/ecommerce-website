@@ -6,17 +6,24 @@ import {Link} from "react-router-dom";
 
 const SiteCard = (props) => {
 
+
+    if(!props.img || !props.name || !props.id || !props.brandId || !props.price) {
+        return null
+    }
+
+    console.log(props)
+
     return (
         <Card style={{width: '345px', minWidth: '175px'}}>
             <CardHeader
                 avatar={<Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                    {props.name[0]}
+                    {props?.name[0]}
                         </Avatar>
                 }
-                title={props.name}
-                subheader={props.brandId}
+                title={props?.name}
+                subheader={props?.brandId}
             />
-                <Link to ={`/product-detail/${props.id}/${props.name}`}>
+                <Link to ={`/product-detail/${props?.id}/${props?.name}`}>
                     <CardMedia
                         component="img"
                         height="194"
@@ -27,11 +34,11 @@ const SiteCard = (props) => {
             <CardContent>
                 <>
                     <div style={{display: 'flex',justifyContent: 'space-between', marginBottom: '13px'}}>
-                        <h2>{props.price} AZN</h2>
+                        <h2>{props?.price} AZN</h2>
                         <AddShoppingCartIcon style={icon}/>
                     </div>
                     <Typography variant="body2" color="text.secondary">
-                        {props.name}
+                        {props?.name}
                     </Typography>
                 </>
             </CardContent>
