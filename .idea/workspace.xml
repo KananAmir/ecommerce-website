@@ -2,15 +2,46 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9a444c74-e22b-488c-b930-776b3de8254f" name="Changes" comment="fix: bugs fixed">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/pages/admin/add-brand/index.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/pages/admin/add-category/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/admin/admin-header/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/admin/admin-header/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/layout/LayoutAdmin.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/layout/LayoutAdmin.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/admin/edit-product/index.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/router/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "last_opened_file_path": "/Users/nargiz/Documents/Code/ecommerce-website/client/src/pages/admin/add-brand",
+    "ts.external.directory.path": "/Applications/WebStorm.app/Contents/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/client/src/pages/admin/add-brand" />
+    </key>
+  </component>
   <component name="TaskManager">
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
