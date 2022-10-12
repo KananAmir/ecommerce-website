@@ -4,23 +4,25 @@ import HomeIcon from '@mui/icons-material/Home';
 import GroupIcon from '@mui/icons-material/Group';
 import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
 import DiscountIcon from '@mui/icons-material/Discount';
-import AddIcon from '@mui/icons-material/Add';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 import EditIcon from '@mui/icons-material/Edit';
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 
 const AdminHeader = () => {
+    const location = useLocation();
+
   const listOne = [
       {title: 'Home', to: "/admin", icon: <HomeIcon/>},
       {title: 'Users', to: "/admin/users-list-page", icon: <GroupIcon/>},
       {title: 'Products', to: "/admin/products-list-page", icon: <ProductionQuantityLimitsIcon/>},
-      {title: 'Discounts', to: "/", icon: <DiscountIcon/>}
+      {title: 'Discounts', to: "/admin", icon: <DiscountIcon/>}
   ]
 
     const listTwo = [
-      {title: 'Add Product', to: "/admin/products-add", icon: <AddIcon/>},
-      {title: 'Edit Product', to: "/admin/products-edit", icon: <EditIcon/>},
-      // {title: 'Add Category', to: "/admin/products-edit", icon: <EditIcon/>},
+      {title: 'Add Product', to: "/admin/products-crud", icon: <AddCircleIcon/>},
+      {title: 'Add Category', to: "/admin/category-crud", icon: <AddCircleIcon/>},
+      {title: 'Add Brand', to: "/admin/brand-crud", icon: <AddCircleIcon/>},
     ]
 
   return (
@@ -28,8 +30,10 @@ const AdminHeader = () => {
         <List>
           {
             listOne.map(item => {
-              return <Link to={item.to}>
-                <ListItem disablePadding>
+              return <ListItem
+                  disablePadding
+                  component={Link} to={item.to}
+                  selected={item.to === location.pathname}>
                   <ListItemButton>
                     <ListItemIcon>
                       {item.icon}
@@ -37,7 +41,6 @@ const AdminHeader = () => {
                     <ListItemText primary={item.title} />
                   </ListItemButton>
                 </ListItem>
-              </Link>
             })
           }
         </List>
@@ -45,8 +48,10 @@ const AdminHeader = () => {
         <List>
             {
                 listTwo.map((item) => {
-                    return <Link to={item.to}>
-                        <ListItem disablePadding>
+                    return <ListItem
+                        disablePadding
+                        component={Link} to={item.to}
+                        selected={item.to === location.pathname}>
                             <ListItemButton>
                                 <ListItemIcon>
                                     {item.icon}
@@ -54,7 +59,6 @@ const AdminHeader = () => {
                                 <ListItemText primary={item.title} />
                             </ListItemButton>
                         </ListItem>
-                    </Link>
                 })
             }
         </List>

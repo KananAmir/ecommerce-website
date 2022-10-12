@@ -1,14 +1,14 @@
 const express = require('express')
-const { get } = require('express/lib/response')
-const { categoryService } = require('../services/categoryService')
-const categoryValidation = require('../validation/categoryValidation')
-
+const { productController } = require('../controllers/product.controller')
+const store = require('../middlewares/multer')
 const router = express.Router()
 
-router.route('/').get(categoryService.getAll)
-
-router.route('/:id').get(categoryService.getById)
-
-router.route('/').post(categoryValidation, categoryService.add)
+//get All
+router.route('/').get(productController.getAll)
+// Get BY ID
+router.route('/:id').get(productController.getById)
+//add with images => Form action uploadmultiple form method post required !
+router.route('/', store.array('images', 4)).post(productController.add)
+// router.route.post('/', store.array('images', 4), productController.add)
 
 module.exports = router

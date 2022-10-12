@@ -36,7 +36,7 @@ const ProductDetail = () => {
             spacing={2}
             alignItems="center"
             justifyContent="center"
-            style={{ minHeight: "80vh" }}
+            style={{ minHeight: "87.5vh" }}
           >
             <Grid item xs={12} md={6} display="flex" justifyContent="center">
               <SimpleImageSlider

@@ -5,9 +5,9 @@ import { Card, CardHeader, CardMedia, CardContent,
 import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import {Link} from "react-router-dom";
 
 const SiteCard = (props) => {
-    // const { loading = false } = props;
     const[loading, setLoading] = useState(false);
 
     return (
@@ -54,12 +54,14 @@ const SiteCard = (props) => {
             {loading ? (
                 <Skeleton sx={{ height: 190 }} animation="wave" variant="rectangular" />
             ) : (
-                <CardMedia
-                    component="img"
-                    height="194"
-                    image={props.img}
-                    alt="Paella dish"
-                />
+                <Link to ={`/product-detail/${props.id}/${props.name}`}>
+                    <CardMedia
+                        component="img"
+                        height="194"
+                        image={props.img}
+                        alt="Paella dish"
+                    />
+                </Link>
             )}
             <CardContent>
                 {loading ? (
