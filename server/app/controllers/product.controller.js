@@ -21,7 +21,13 @@ const productController = {
     })
   },
 
-  add: (req, res) => {
+  add: (req, res, next) => {
+    const files = req.files
+    if (!files) {
+      const err = new Error('Please choose files !')
+      err.httpStatusCode = 400
+      return next(err)
+    }
     let product = new Product({
       name: req.body.name,
       desc: req.body.desc,
@@ -30,7 +36,7 @@ const productController = {
       stock: req.body.stock,
       categoryId: req.body.categoryId,
       brandId: req.body.brandId,
-      images: req.body.images,
+      images: req.files,
     })
     res.send(product)
     product.save((err, doc) => {
