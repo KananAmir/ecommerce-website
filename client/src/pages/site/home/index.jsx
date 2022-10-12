@@ -61,7 +61,8 @@ const HomePage = () => {
                   return <SiteCard
                       key={index}
                       loading={data.loading}
-                      name={item.name}
+                      // name={item.name}
+                      name={item.name ? item.name : ''}
                       id={item._id}
                       brandId={item.brandId}
                       price={item.price}
