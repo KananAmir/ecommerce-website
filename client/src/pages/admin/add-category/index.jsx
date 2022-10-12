@@ -1,12 +1,12 @@
 import React from 'react'
 import LayoutAdmin from "../../../layout/LayoutAdmin";
 
-const UsersListPage = () => {
+const AddCategory = () => {
     return (
         <LayoutAdmin>
-            user list page
+            Hi I am AddCategory
         </LayoutAdmin>
     )
 }
 
-export default UsersListPage;
+export default AddCategory
