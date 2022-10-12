@@ -2,14 +2,14 @@ const express = require('express')
 const { orderController } = require('../controllers/order.controller')
 const router = express.Router()
 
-//Get All
+//get All
 router.route('/').get(orderController.getAll)
-//GetById
+// GetbyId
 router.route('/:id').get(orderController.getById)
-//Add
+//add
 router.route('/').post(orderController.add)
-//Edit
+//edit
 router.route('/:id').put(orderController.edit)
-//Delete
+//delete
 router.route('/:id').delete(orderController.delete)
 module.exports = router
