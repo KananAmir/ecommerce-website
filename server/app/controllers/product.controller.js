@@ -49,17 +49,31 @@ const productController = {
     })
   },
   edit: async (req, res) => {
-    const editProduct = await Product.findOne({ _id: req.params.id })
+    let id = req.params.id
 
-    if (editProduct) {
-      res.send(editProduct)
-    } else {
-      res.status(404).send({ message: 'product not found' })
-    }
+    Product.findByIdAndUpdate(
+      id,
+      {
+        name: req.body.name,
+        desc: req.body.desc,
+        stock: req.body.stock,
+        price: req.body.price,
+        categoryId: req.body.categoryId,
+        brandId: req.body.brandId,
+        discount: req.body.discount,
+      },
+      function (err, docs) {
+        if (err) {
+          console.log(err)
+        } else {
+          console.log(docs)
+        }
+        res.send('Prod Edited !')
+      },
+    )
   },
   delete: (req, res) => {
     let id = req.params.id
-
     Product.findByIdAndDelete(id, (err, doc) => {
       if (!err) {
         res.json('Product Deleted !')
