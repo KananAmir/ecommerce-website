@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9a444c74-e22b-488c-b930-776b3de8254f" name="Changes" comment="fix: conflicts handled" />
+    <list default="true" id="9a444c74-e22b-488c-b930-776b3de8254f" name="Changes" comment="fix: conflicts handled">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/admin/products-list-page/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/admin/products-list-page/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/admin/users-list-page/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/admin/users-list-page/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/site/home/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/site/home/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/redux/actions/products.action.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/actions/products.action.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -48,7 +54,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1665557158748</updated>
-      <workItem from="1665557159865" duration="5193000" />
+      <workItem from="1665557159865" duration="6528000" />
     </task>
     <task id="LOCAL-00001" summary="fix: conflicts handled">
       <created>1665562421814</created>

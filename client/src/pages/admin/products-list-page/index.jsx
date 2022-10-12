@@ -2,7 +2,6 @@ import React from "react";
 import LayoutAdmin from "../../../layout/LayoutAdmin";
 import { Table, TableBody, TableCell, TableContainer,
         TableHead, TableRow, Paper, Button,  } from "@mui/material";
-import styled from "@emotion/styled";
 
 const ProductsListPage = () => {
   const products = [

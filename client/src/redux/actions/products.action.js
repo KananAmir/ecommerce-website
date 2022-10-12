@@ -1,6 +1,7 @@
 import axios from "axios"
 
-let baseUrl = ``;
+let baseUrl = `http://localhost:8080/product`;
+// let baseUrl = `https://northwind.vercel.app/api/suppliers`;
 
 export const getAllProductsAction = () => {
     return async (dispatch) => {
