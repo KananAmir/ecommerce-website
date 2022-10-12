@@ -30,4 +30,4 @@ const Product = mongoose.model(
   }),
 )
 
-module.exports = Product
+module.exports = { Product }
