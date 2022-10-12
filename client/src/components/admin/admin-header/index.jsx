@@ -6,10 +6,12 @@ import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantity
 import DiscountIcon from '@mui/icons-material/Discount';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import EditIcon from '@mui/icons-material/Edit';
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 
 const AdminHeader = () => {
+    const location = useLocation();
+
   const listOne = [
       {title: 'Home', to: "/admin", icon: <HomeIcon/>},
       {title: 'Users', to: "/admin/users-list-page", icon: <GroupIcon/>},
@@ -28,8 +30,10 @@ const AdminHeader = () => {
         <List>
           {
             listOne.map(item => {
-              return <Link to={item.to}>
-                <ListItem disablePadding>
+              return <ListItem
+                  disablePadding
+                  component={Link} to={item.to}
+                  selected={item.to === location.pathname}>
                   <ListItemButton>
                     <ListItemIcon>
                       {item.icon}
@@ -37,7 +41,6 @@ const AdminHeader = () => {
                     <ListItemText primary={item.title} />
                   </ListItemButton>
                 </ListItem>
-              </Link>
             })
           }
         </List>
@@ -45,8 +48,10 @@ const AdminHeader = () => {
         <List>
             {
                 listTwo.map((item) => {
-                    return <Link to={item.to}>
-                        <ListItem disablePadding>
+                    return <ListItem
+                        disablePadding
+                        component={Link} to={item.to}
+                        selected={item.to === location.pathname}>
                             <ListItemButton>
                                 <ListItemIcon>
                                     {item.icon}
@@ -54,7 +59,6 @@ const AdminHeader = () => {
                                 <ListItemText primary={item.title} />
                             </ListItemButton>
                         </ListItem>
-                    </Link>
                 })
             }
         </List>

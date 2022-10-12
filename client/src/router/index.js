@@ -14,6 +14,7 @@ import AdminLoginPage from "../pages/admin/login-page";
 import AddProduct from "../pages/admin/add-product";
 import AddCategory from "../pages/admin/add-category";
 import AddBrand from "../pages/admin/add-brand";
+import NotFound from "pages/site/notfound";
 
 function Routing() {
 
@@ -23,9 +24,10 @@ function Routing() {
                 <Route path='/' element = {<HomePage/>} />
                 <Route path='/login' element = {<SiteLoginPage/>} />
                 <Route path='/signup' element = {<SiteSignUpPage/>} />
-                <Route path='/product-detail/:name/:id' element = {<ProductDetail/>} />
+                <Route path='/product-detail/:id/:name' element = {<ProductDetail/>} />
                 <Route path='/user-detail' element = {<UserDetail/>} />
                 <Route path='/cart' element = {<CartPage/>} />
+                <Route path='*' element = {<NotFound/>} />
 
 
                 <Route path='/admin' element = {<AdminHomePage/>} />
