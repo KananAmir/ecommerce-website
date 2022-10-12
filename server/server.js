@@ -1,10 +1,11 @@
 const express = require('express')
+const cors = require('cors')
 const connectDb = require('./app/config/database')
 const app = express()
 const bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-
+app.use(cors())
 connectDb()
 
 const categoryRouter = require('./app/routes/category.routes')

@@ -44,10 +44,14 @@ const ProductsListPage = () => {
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
-            <TableRow>
+            <TableRow
+              sx={{
+                "&:first-child th": { fontWeight: "600", fontSize: "16px" },
+              }}
+            >
               <TableCell>Product Name</TableCell>
-              <TableCell align="center">BrandId</TableCell>
-              <TableCell align="center">CategoryId</TableCell>
+              <TableCell align="center">Brand Id</TableCell>
+              <TableCell align="center">Category Id</TableCell>
               <TableCell align="center">Price</TableCell>
               <TableCell align="center">Discount</TableCell>
               <TableCell align="center">Stock</TableCell>

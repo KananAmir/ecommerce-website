@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
+import ReCAPTCHA from "react-google-recaptcha"
 import Box from "@mui/material/Box";
 import FormControl from "@mui/material/FormControl";
 import Button from "@mui/material/Button";
@@ -9,6 +10,8 @@ import { IconButton, InputAdornment, TextField } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { Row, Col } from "react-grid-system";
 import styles from "./index.module.css";
+import { Helmet } from "react-helmet"
+import axios from "axios";
 
 const SiteSignUpPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -48,7 +51,30 @@ const SiteSignUpPage = () => {
       console.log(values);
     },
   });
+  const captchaRef = useRef(null);
+ 
+  const handleSubmit = async(e) =>{
+    
+    e.preventDefault();
+    const token = captchaRef.current.getValue();
+    console.log("token: ", token);
+    captchaRef.current.reset();
+
+    await axios.post(process.env.REACT_APP_API_URL, {token})
+    .then(res =>  console.log(res))
+    .catch((error) => {
+    console.log(error);
+    })
+  };
   return (
+    <>
+    <Helmet>
+    <title>Log In | Shop Your Way</title>
+    <meta
+      name="description"
+      content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio quas ea architecto? Dignissimos illo dolorum nesciunt ipsa dicta accusamus repudiandae corporis ad neque voluptatum distinctio a dolor, asperiores, odit aut?"
+    />
+  </Helmet>
     <LayoutSite>
       <Box
         display="flex"
@@ -57,7 +83,7 @@ const SiteSignUpPage = () => {
         sx={{
           "& > :not(style)": { m: 1, width: "25%" },
           marginTop: "100px",
-          marginBottom:'33px'
+          marginBottom:'100px'
         }}
         noValidate
         autoComplete="off"
@@ -226,8 +252,8 @@ const SiteSignUpPage = () => {
              
             </Col>
           </Row>
-
-          <Box display="flex" justifyContent="center" sx={{ mt: 4 }}>
+          <ReCAPTCHA style={{display:'flex',justifyContent:'center',marginTop:'10px'}} sitekey={process.env.REACT_APP_SITE_KEY} ref={captchaRef}/>
+          <Box display="flex" justifyContent="center" sx={{ mt: 1 }}>
             <Button sx={{background:'darkgreen'}} variant="contained" type="submit">
               Sign Up
             </Button>
@@ -235,6 +261,7 @@ const SiteSignUpPage = () => {
         </Box>
       </Box>
     </LayoutSite>
+    </>
   );
 };
 
