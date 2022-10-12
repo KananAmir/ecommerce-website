@@ -47,25 +47,19 @@ const SiteSignUpPage = () => {
         .oneOf([Yup.ref("password")], "Passwords must match")
         .required("Required"),
     }),
-    onSubmit: (values) => {
-      console.log(values);
+    onSubmit: async(values) => {
+      const token = captchaRef.current.getValue();
+      console.log("token: ", token);
+      captchaRef.current.reset();
+
+      await axios.post(process.env.REACT_APP_API_URL, {token})
+      .then(res =>  console.log(res))
+      .catch((error) => {
+      console.log(error);
+      })
     },
   });
   const captchaRef = useRef(null);
- 
-  const handleSubmit = async(e) =>{
-    
-    e.preventDefault();
-    const token = captchaRef.current.getValue();
-    console.log("token: ", token);
-    captchaRef.current.reset();
-
-    await axios.post(process.env.REACT_APP_API_URL, {token})
-    .then(res =>  console.log(res))
-    .catch((error) => {
-    console.log(error);
-    })
-  };
   return (
     <>
     <Helmet>
