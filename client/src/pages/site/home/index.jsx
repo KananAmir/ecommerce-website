@@ -28,8 +28,7 @@ const HomePage = () => {
         <Container>
           {
               data.loading ?
-                  [1, 2, 3, 4, 5, 6].map((e,i) => {
-                      console.log('jii')
+                  Array(10).fill(null).map((e,i) => {
                       return <Card style={{width: '345px', minWidth: '175px'}} key={i} >
                           <CardHeader
                               avatar={<Skeleton animation="wave" variant="circular" width={40} height={40} />}

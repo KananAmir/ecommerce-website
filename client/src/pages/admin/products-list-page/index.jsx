@@ -1,44 +1,62 @@
-import React from "react";
+import React, { useEffect } from "react";
 import LayoutAdmin from "../../../layout/LayoutAdmin";
-import { Table, TableBody, TableCell, TableContainer,
-        TableHead, TableRow, Paper, Button,  } from "@mui/material";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  Button,
+} from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllProductsAction } from "../../../redux/actions/products.action";
 
 const ProductsListPage = () => {
-  const products = [
-    {
-      name: "Iphone 14",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae eius dolor. Reiciendis nostrum fuga, numquam aliquam exercitationem repellendus harum ab, molestias sapiente, doloribus voluptatum dolore?",
-      categoryId: 13,
-      brandId: 13,
-      discountPercentage: 13,
-      price: 1500,
-      category: "phone",
-      stock: 29,
-      images: [
-        "https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1662703105/Croma%20Assets/Communication/Mobiles/Images/261963_oqrd6j.png/mxw_640,f_auto",
-        "https://www.apple.com/newsroom/images/product/iphone/standard/Apple-iPhone-14-Pro-iPhone-14-Pro-Max-silver-220907_inline.jpg.large.jpg",
-        "https://www.notebookcheck.net/fileadmin/Notebooks/News/_nc3/iphone_14_pro_lgd.jpg",
-      ],
-    },
-    {
-      name: "Samsung A52",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae eius dolor. Reiciendis nostrum fuga, numquam aliquam exercitationem repellendus harum ab, molestias sapiente, doloribus voluptatum dolore?",
-      categoryId: 11,
-      brandId: 7,
-      discountPercentage: 25,
-      price: 650,
-      category: "phone",
-      stock: 17,
-      images: [
-        "https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1662703105/Croma%20Assets/Communication/Mobiles/Images/261963_oqrd6j.png/mxw_640,f_auto",
-        "https://www.apple.com/newsroom/images/product/iphone/standard/Apple-iPhone-14-Pro-iPhone-14-Pro-Max-silver-220907_inline.jpg.large.jpg",
-        "https://www.notebookcheck.net/fileadmin/Notebooks/News/_nc3/iphone_14_pro_lgd.jpg",
-      ],
-    },
-  ];
+  const dispatch = useDispatch();
+  const products = useSelector((state) => state.productsReducer);
 
+  useEffect(() => {
+    dispatch(getAllProductsAction());
+  }, []);
+
+  // const products = [
+  //   {
+  //     name: "Iphone 14",
+  //     description:
+  //       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae eius dolor. Reiciendis nostrum fuga, numquam aliquam exercitationem repellendus harum ab, molestias sapiente, doloribus voluptatum dolore?",
+  //     categoryId: 13,
+  //     brandId: 13,
+  //     discountPercentage: 13,
+  //     price: 1500,
+  //     category: "phone",
+  //     stock: 29,
+  //     images: [
+  //       "https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1662703105/Croma%20Assets/Communication/Mobiles/Images/261963_oqrd6j.png/mxw_640,f_auto",
+  //       "https://www.apple.com/newsroom/images/product/iphone/standard/Apple-iPhone-14-Pro-iPhone-14-Pro-Max-silver-220907_inline.jpg.large.jpg",
+  //       "https://www.notebookcheck.net/fileadmin/Notebooks/News/_nc3/iphone_14_pro_lgd.jpg",
+  //     ],
+  //   },
+  //   {
+  //     name: "Samsung A52",
+  //     description:
+  //       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae eius dolor. Reiciendis nostrum fuga, numquam aliquam exercitationem repellendus harum ab, molestias sapiente, doloribus voluptatum dolore?",
+  //     categoryId: 11,
+  //     brandId: 7,
+  //     discountPercentage: 25,
+  //     price: 650,
+  //     category: "phone",
+  //     stock: 17,
+  //     images: [
+  //       "https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1662703105/Croma%20Assets/Communication/Mobiles/Images/261963_oqrd6j.png/mxw_640,f_auto",
+  //       "https://www.apple.com/newsroom/images/product/iphone/standard/Apple-iPhone-14-Pro-iPhone-14-Pro-Max-silver-220907_inline.jpg.large.jpg",
+  //       "https://www.notebookcheck.net/fileadmin/Notebooks/News/_nc3/iphone_14_pro_lgd.jpg",
+  //     ],
+  //   },
+  // ];
+
+  console.log(products);
   return (
     <LayoutAdmin>
       <TableContainer component={Paper}>
@@ -46,7 +64,7 @@ const ProductsListPage = () => {
           <TableHead>
             <TableRow
               sx={{
-                "&:first-child th": { fontWeight: "600", fontSize: "16px" },
+                "&:first-of-type th": { fontWeight: "600", fontSize: "16px" },
               }}
             >
               <TableCell>Product Name</TableCell>
@@ -60,10 +78,11 @@ const ProductsListPage = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {products.map((product) => (
+
+            {products.data && products.data?.map((product, index) => (
               <TableRow
-                key={product.name}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                key={index}
+                sx={{ "&:first-of-type td, &:first-of-type th": { border: 0 } }}
               >
                 <TableCell>{product.name}</TableCell>
                 <TableCell align="center">{product.brandId}</TableCell>
@@ -75,30 +94,30 @@ const ProductsListPage = () => {
                 <TableCell align="center">{product.stock}</TableCell>
                 <TableCell align="center">
                   <Button
-                      sx={{
-                        color: "green",
-                        fontWeight: '500',
-                        border: "1px solid green",
-                        ":hover": {
-                          backgroundColor: "green",
-                          color: "white",
-                        },
-                      }}
+                    sx={{
+                      color: "green",
+                      fontWeight: "500",
+                      border: "1px solid green",
+                      ":hover": {
+                        backgroundColor: "green",
+                        color: "white",
+                      },
+                    }}
                   >
                     Edit
                   </Button>
                 </TableCell>
                 <TableCell align="center">
                   <Button
-                      sx={{
-                        color: "red",
-                        fontWeight: '500',
-                        border: "1px solid red",
-                        ":hover": {
-                          backgroundColor: "red",
-                          color: "white",
-                        },
-                      }}
+                    sx={{
+                      color: "red",
+                      fontWeight: "500",
+                      border: "1px solid red",
+                      ":hover": {
+                        backgroundColor: "red",
+                        color: "white",
+                      },
+                    }}
                   >
                     Delete
                   </Button>
