@@ -13,6 +13,6 @@ router.route('/:id').get(brandController.getById)
 //delete
 router.route('/:id').delete(brandController.delete)
 //edit
-router.route('/:id').put(brandController.edit)
+router.route('/:id').put(brandValidation, brandController.edit)
 
 module.exports = router
