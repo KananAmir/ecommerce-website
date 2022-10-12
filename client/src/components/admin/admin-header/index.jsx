@@ -29,8 +29,9 @@ const AdminHeader = () => {
       <Box sx={{ overflow: 'auto' }}>
         <List>
           {
-            listOne.map(item => {
+            listOne.map((item, index) => {
               return <ListItem
+                  key={index}
                   disablePadding
                   component={Link} to={item.to}
                   selected={item.to === location.pathname}>
@@ -47,8 +48,9 @@ const AdminHeader = () => {
         <Divider />
         <List>
             {
-                listTwo.map((item) => {
+                listTwo.map((item, index) => {
                     return <ListItem
+                        key={index}
                         disablePadding
                         component={Link} to={item.to}
                         selected={item.to === location.pathname}>
