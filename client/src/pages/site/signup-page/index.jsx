@@ -10,6 +10,7 @@ import { IconButton, InputAdornment, TextField } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { Row, Col } from "react-grid-system";
 import styles from "./index.module.css";
+import axios from "axios";
 
 const SiteSignUpPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -50,11 +51,19 @@ const SiteSignUpPage = () => {
     },
   });
   const captchaRef = useRef(null);
-
-  const handleSubmit = (e) =>{
+ 
+  const handleSubmit = async(e) =>{
+    
     e.preventDefault();
     const token = captchaRef.current.getValue();
+    console.log("token: ", token);
     captchaRef.current.reset();
+
+    await axios.post(process.env.REACT_APP_API_URL, {token})
+    .then(res =>  console.log(res))
+    .catch((error) => {
+    console.log(error);
+    })
   };
   return (
     <LayoutSite>
