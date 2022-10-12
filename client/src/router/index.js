@@ -12,6 +12,7 @@ import UsersListPage from "../pages/admin/users-list-page";
 import ProductsListPage from "../pages/admin/products-list-page";
 import AdminLoginPage from "../pages/admin/login-page";
 import AddProduct from "../pages/admin/add-product";
+import AddDiscount from "../pages/admin/add-discount";
 import AddCategory from "../pages/admin/add-category";
 import AddBrand from "../pages/admin/add-brand";
 import NotFound from "pages/site/notfound";
