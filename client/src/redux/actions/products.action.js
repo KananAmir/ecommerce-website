@@ -1,6 +1,6 @@
 import axios from "axios"
 
-let baseUrl = ``;
+let baseUrl = `http://localhost:8080/product`;
 
 export const getAllProductsAction = () => {
     return async (dispatch) => {
