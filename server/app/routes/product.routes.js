@@ -1,14 +1,13 @@
 const express = require('express')
-const { get } = require('express/lib/response')
-const { categoryService } = require('../services/categoryService')
-const categoryValidation = require('../validation/categoryValidation')
+const { productController } = require('../controllers/product.controller')
 
 const router = express.Router()
 
-router.route('/').get(categoryService.getAll)
-
-router.route('/:id').get(categoryService.getById)
-
-router.route('/').post(categoryValidation, categoryService.add)
+//get All
+router.route('/').get(productController.getAll)
+// Get BY ID
+router.route('/:id').get(productController.getById)
+//add
+router.route('/').post(productController.add)
 
 module.exports = router
