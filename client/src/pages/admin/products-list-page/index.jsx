@@ -79,7 +79,7 @@ const ProductsListPage = () => {
                         <TableCell align="center">{product.categoryId}</TableCell>
                         <TableCell align="center">{product.price} AZN</TableCell>
                         <TableCell align="center">
-                          {product.discountPercentage}%
+                          {product.discount}%
                         </TableCell>
                         <TableCell align="center">{product.stock}</TableCell>
                         <TableCell align="center">
