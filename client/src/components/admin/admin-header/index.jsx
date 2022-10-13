@@ -8,12 +8,13 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
+import CategoryIcon from '@mui/icons-material/Category';
 import HomeIcon from "@mui/icons-material/Home";
 import GroupIcon from "@mui/icons-material/Group";
 import ProductionQuantityLimitsIcon from "@mui/icons-material/ProductionQuantityLimits";
 import DiscountIcon from "@mui/icons-material/Discount";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
-import EditIcon from "@mui/icons-material/Edit";
+import BrandingWatermarkIcon from '@mui/icons-material/BrandingWatermark';
 import { Link, useLocation } from "react-router-dom";
 
 const AdminHeader = () => {
@@ -28,6 +29,8 @@ const AdminHeader = () => {
       icon: <ProductionQuantityLimitsIcon />,
     },
     { title: "Discounts", to: "/admin", icon: <DiscountIcon /> },
+    { title: "Categories", to: "/admin/categories", icon: <CategoryIcon /> },
+    { title: "Brands", to: "/admin/brands", icon: <BrandingWatermarkIcon /> },
   ];
 
   const listTwo = [
@@ -36,12 +39,6 @@ const AdminHeader = () => {
       to: "/admin/products-crud",
       icon: <AddCircleIcon />,
     },
-    {
-      title: "Add Category",
-      to: "/admin/category-crud",
-      icon: <AddCircleIcon />,
-    },
-    { title: "Add Brand", to: "/admin/brand-crud", icon: <AddCircleIcon /> },
   ];
 
   return (
