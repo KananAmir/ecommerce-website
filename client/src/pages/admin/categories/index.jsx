@@ -22,7 +22,6 @@ const Categories = () => {
     const formRef = useRef();
     const buttonRef = useRef();
 
-
     useEffect(() => {
         handleGet();
     }, [categories])
