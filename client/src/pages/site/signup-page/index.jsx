@@ -247,6 +247,9 @@ const SiteSignUpPage = () => {
              
             </Col>
           </Row>
+          {
+            console.log("capthca: ", process.env.REACT_APP_SITE_KEY)
+          }
           <ReCAPTCHA style={{display:'flex',justifyContent:'center',marginTop:'10px'}} sitekey={process.env.REACT_APP_SITE_KEY} ref={captchaRef}/>
           <Box display="flex" justifyContent="center" sx={{ mt: 1 }}>
             <Button sx={{background:'darkgreen'}} variant="contained" type="submit">
