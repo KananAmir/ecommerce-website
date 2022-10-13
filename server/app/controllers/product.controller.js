@@ -47,7 +47,6 @@ const productController = {
       brand: Brand.findById(req.body.brandId),
       images: imageArr,
     })
-    console.log(product)
     product.save((err, docs) => {
       if (!err) {
         res.send(`Product Created ! ${docs}`)
