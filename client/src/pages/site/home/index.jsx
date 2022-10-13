@@ -6,7 +6,6 @@ import { Helmet } from "react-helmet";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProductsAction } from "../../../redux/actions/products.action";
 import { getCategories } from "services/category.service";
-
 import {
   Card,
   CardContent,
@@ -25,7 +24,8 @@ const HomePage = () => {
   const data = useSelector((state) => state.productsReducer);
   const [isFiltered, setIsFiltered] = useState(false);
   const [categories, setCategories] = useState([]);
-  const [category, setCategory] = useState({});
+  const [categoryId, setCategoryId] = useState({});
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     dispatch(getAllProductsAction());
@@ -37,19 +37,22 @@ const HomePage = () => {
   };
 
   const handleChange = (event) => {
-    setCategory(event.target.value);
-    console.log(event.target.value);
+    setCategoryId(event.target.value);
     setIsFiltered(true);
     if (event.target.value === "all") {
       setIsFiltered(false);
     }
   };
 
+  const handleSearchInputChange = (event) => {
+    setSearch(event.target.value);
+  };
+
   const renderProducts = () => {
     let result;
     isFiltered
       ? (result = data.data
-          ?.filter((item) => item.categories === category)
+          ?.filter((item) => item.categoryId === categoryId)
           .map((item, index) => {
             return (
               <SiteCard
@@ -96,7 +99,7 @@ const HomePage = () => {
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
-                value={category}
+                value={categoryId}
                 label="Category"
                 onChange={handleChange}
               >
@@ -115,6 +118,8 @@ const HomePage = () => {
             id="outlined-basic"
             label="Search Product"
             variant="outlined"
+            value={search}
+            onChange={(event) => handleSearchInputChange(event)}
           />
         </Center>
         <Container>
