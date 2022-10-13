@@ -23,8 +23,9 @@ import {
 const HomePage = () => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.productsReducer);
-  const [categories, setCategories] = useState("");
-  const [category, setCategory] = useState("");
+  const [isFiltered, setIsFiltered] = useState(false);
+  const [categories, setCategories] = useState([]);
+  const [category, setCategory] = useState({});
 
   useEffect(() => {
     dispatch(getAllProductsAction());
@@ -37,6 +38,45 @@ const HomePage = () => {
 
   const handleChange = (event) => {
     setCategory(event.target.value);
+    console.log(event.target.value);
+    setIsFiltered(true);
+    if (event.target.value === "all") {
+      setIsFiltered(false);
+    }
+  };
+
+  const renderProducts = () => {
+    let result;
+    isFiltered
+      ? (result = data.data
+          ?.filter((item) => item.categories === category)
+          .map((item, index) => {
+            return (
+              <SiteCard
+                key={index}
+                loading={data.loading}
+                name={item.name ? item.name : ""}
+                img={item.images[0]}
+                id={item._id}
+                date={item.createdAt}
+                price={item.price}
+              />
+            );
+          }))
+      : (result = data.data?.map((item, index) => {
+          return (
+            <SiteCard
+              key={index}
+              loading={data.loading}
+              name={item.name ? item.name : ""}
+              img={item.images[0]}
+              id={item._id}
+              date={item.createdAt}
+              price={item.price}
+            />
+          );
+        }));
+    return result;
   };
 
   return (
@@ -60,9 +100,12 @@ const HomePage = () => {
                 label="Category"
                 onChange={handleChange}
               >
+                <MenuItem value={"all"}>All Products</MenuItem>
                 {categories &&
-                  categories.map((item) => (
-                    <MenuItem value={item.name}>{item.name}</MenuItem>
+                  categories.map((item, index) => (
+                    <MenuItem key={index} value={item._id}>
+                      {item.name}
+                    </MenuItem>
                   ))}
               </Select>
             </FormControl>
@@ -75,49 +118,70 @@ const HomePage = () => {
           />
         </Center>
         <Container>
-          {
-              data.loading ?
-                  Array(10).fill(null).map((e,i) => {
-                      return <Card style={{width: '345px', minWidth: '175px'}} key={i} >
-                          <CardHeader
-                              avatar={<Skeleton animation="wave" variant="circular" width={40} height={40} />}
-                              title={<Skeleton
-                                  animation="wave"
-                                  height={10}
-                                  width="80%"
-                                  style={{ marginBottom: 6 }}
-                              />}
-                              subheader= {<Skeleton
-                                  animation="wave"
-                                  height={10}
-                                  width="80%"
-                                  style={{ marginBottom: 6 }}
-                              />}
+          {data.loading
+            ? Array(10)
+                .fill(null)
+                .map((e, i) => {
+                  return (
+                    <Card style={{ width: "345px", minWidth: "175px" }} key={i}>
+                      <CardHeader
+                        avatar={
+                          <Skeleton
+                            animation="wave"
+                            variant="circular"
+                            width={40}
+                            height={40}
                           />
-                          <Skeleton sx={{ height: 190 }} animation="wave" variant="rectangular" />
-                          <CardContent>
-                              <div style={{display: 'flex',justifyContent: 'space-between', marginBottom: '13px'}}>
-                                  <Skeleton animation="wave" height={10} width="40%" style={{ marginBottom: 6 }} />
-                                  <Skeleton animation="wave" height={10} width="40%" />
-                              </div>
-                              <Skeleton animation="wave" height={10} style={{ marginBottom: 6 }} />
-                              <Skeleton animation="wave" height={10} width="100%" />
-                          </CardContent>
-                      </Card>
-                  })
-                  :
-              data.data?.map((item, index) => {
-                  return <SiteCard
-                      key={index}
-                      loading={data.loading}
-                      name={item.name}
-                      img = {item.images[0]}
-                      id={item._id}
-                      date = {item.createdAt}
-                      price={item.price}
-                  />
-              })
-          }
+                        }
+                        title={
+                          <Skeleton
+                            animation="wave"
+                            height={10}
+                            width="80%"
+                            style={{ marginBottom: 6 }}
+                          />
+                        }
+                        subheader={
+                          <Skeleton
+                            animation="wave"
+                            height={10}
+                            width="80%"
+                            style={{ marginBottom: 6 }}
+                          />
+                        }
+                      />
+                      <Skeleton
+                        sx={{ height: 190 }}
+                        animation="wave"
+                        variant="rectangular"
+                      />
+                      <CardContent>
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                            marginBottom: "13px",
+                          }}
+                        >
+                          <Skeleton
+                            animation="wave"
+                            height={10}
+                            width="40%"
+                            style={{ marginBottom: 6 }}
+                          />
+                          <Skeleton animation="wave" height={10} width="40%" />
+                        </div>
+                        <Skeleton
+                          animation="wave"
+                          height={10}
+                          style={{ marginBottom: 6 }}
+                        />
+                        <Skeleton animation="wave" height={10} width="100%" />
+                      </CardContent>
+                    </Card>
+                  );
+                })
+            : renderProducts()}
         </Container>
       </LayoutSite>
     </>
@@ -129,7 +193,7 @@ export default HomePage;
 // -----------style----------------
 
 const Container = styled.div`
-  padding: 130px 0;
+  padding: 30px 0;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
