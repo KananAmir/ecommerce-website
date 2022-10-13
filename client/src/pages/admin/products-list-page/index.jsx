@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import LayoutAdmin from "../../../layout/LayoutAdmin";
 import {
   Table,
@@ -9,54 +9,42 @@ import {
   TableRow,
   Paper,
   Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllProductsAction } from "../../../redux/actions/products.action";
+import {
+  getAllProductsAction,
+  removeProductAction,
+} from "../../../redux/actions/products.action";
+import { deleteProduct, getProducts } from "../../../services/product.service";
 
 const ProductsListPage = () => {
-  const dispatch = useDispatch();
-  const products = useSelector((state) => state.productsReducer);
+  const [products, setProducts] = useState([]);
+  const [open, setOpen] = React.useState(false);
+  const [id, setId] = useState();
 
   useEffect(() => {
-    dispatch(getAllProductsAction());
-  }, []);
+    handleGet();
+  }, [products]);
 
-  // const products = [
-  //   {
-  //     name: "Iphone 14",
-  //     description:
-  //       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae eius dolor. Reiciendis nostrum fuga, numquam aliquam exercitationem repellendus harum ab, molestias sapiente, doloribus voluptatum dolore?",
-  //     categoryId: 13,
-  //     brandId: 13,
-  //     discountPercentage: 13,
-  //     price: 1500,
-  //     category: "phone",
-  //     stock: 29,
-  //     images: [
-  //       "https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1662703105/Croma%20Assets/Communication/Mobiles/Images/261963_oqrd6j.png/mxw_640,f_auto",
-  //       "https://www.apple.com/newsroom/images/product/iphone/standard/Apple-iPhone-14-Pro-iPhone-14-Pro-Max-silver-220907_inline.jpg.large.jpg",
-  //       "https://www.notebookcheck.net/fileadmin/Notebooks/News/_nc3/iphone_14_pro_lgd.jpg",
-  //     ],
-  //   },
-  //   {
-  //     name: "Samsung A52",
-  //     description:
-  //       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae eius dolor. Reiciendis nostrum fuga, numquam aliquam exercitationem repellendus harum ab, molestias sapiente, doloribus voluptatum dolore?",
-  //     categoryId: 11,
-  //     brandId: 7,
-  //     discountPercentage: 25,
-  //     price: 650,
-  //     category: "phone",
-  //     stock: 17,
-  //     images: [
-  //       "https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1662703105/Croma%20Assets/Communication/Mobiles/Images/261963_oqrd6j.png/mxw_640,f_auto",
-  //       "https://www.apple.com/newsroom/images/product/iphone/standard/Apple-iPhone-14-Pro-iPhone-14-Pro-Max-silver-220907_inline.jpg.large.jpg",
-  //       "https://www.notebookcheck.net/fileadmin/Notebooks/News/_nc3/iphone_14_pro_lgd.jpg",
-  //     ],
-  //   },
-  // ];
+  async function handleGet() {
+    setProducts(await getProducts());
+  }
 
-  console.log(products);
+  const handleYeap = () => {
+    setOpen(false);
+    deleteProduct(id);
+    handleGet();
+  };
+
+  function handleDelete(id) {
+    setId(id);
+    setOpen(true);
+  }
+
   return (
     <LayoutAdmin>
       <TableContainer component={Paper}>
@@ -78,55 +66,74 @@ const ProductsListPage = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-
-            {products.data && products.data?.map((product, index) => (
-              <TableRow
-                key={index}
-                sx={{ "&:first-of-type td, &:first-of-type th": { border: 0 } }}
-              >
-                <TableCell>{product.name}</TableCell>
-                <TableCell align="center">{product.brandId}</TableCell>
-                <TableCell align="center">{product.categoryId}</TableCell>
-                <TableCell align="center">{product.price} AZN</TableCell>
-                <TableCell align="center">
-                  {product.discountPercentage}%
-                </TableCell>
-                <TableCell align="center">{product.stock}</TableCell>
-                <TableCell align="center">
-                  <Button
-                    sx={{
-                      color: "green",
-                      fontWeight: "500",
-                      border: "1px solid green",
-                      ":hover": {
-                        backgroundColor: "green",
-                        color: "white",
-                      },
-                    }}
-                  >
-                    Edit
-                  </Button>
-                </TableCell>
-                <TableCell align="center">
-                  <Button
-                    sx={{
-                      color: "red",
-                      fontWeight: "500",
-                      border: "1px solid red",
-                      ":hover": {
-                        backgroundColor: "red",
-                        color: "white",
-                      },
-                    }}
-                  >
-                    Delete
-                  </Button>
-                </TableCell>
-              </TableRow>
-            ))}
+            {products &&
+              products?.map((product, index) => (
+                <TableRow
+                  key={index}
+                  sx={{
+                    "&:first-of-type td, &:first-of-type th": { border: 0 },
+                  }}
+                >
+                  <TableCell>{product.name}</TableCell>
+                  <TableCell align="center">{product.brandId}</TableCell>
+                  <TableCell align="center">{product.categoryId}</TableCell>
+                  <TableCell align="center">{product.price} AZN</TableCell>
+                  <TableCell align="center">
+                    {product.discountPercentage}%
+                  </TableCell>
+                  <TableCell align="center">{product.stock}</TableCell>
+                  <TableCell align="center">
+                    <Button
+                      sx={{
+                        color: "green",
+                        fontWeight: "500",
+                        border: "1px solid green",
+                        ":hover": {
+                          backgroundColor: "green",
+                          color: "white",
+                        },
+                      }}
+                    >
+                      Edit
+                    </Button>
+                  </TableCell>
+                  <TableCell align="center">
+                    <Button
+                      sx={{
+                        color: "red",
+                        fontWeight: "500",
+                        border: "1px solid red",
+                        ":hover": {
+                          backgroundColor: "red",
+                          color: "white",
+                        },
+                      }}
+                      onClick={() => handleDelete(product._id)}
+                    >
+                      Delete
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
           </TableBody>
         </Table>
       </TableContainer>
+      <Dialog
+        open={open}
+        onClose={() => setOpen(false)}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Are you sure about deleting this brand?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setOpen(false)}>Nope</Button>
+          <Button onClick={handleYeap}>Yeap</Button>
+        </DialogActions>
+      </Dialog>
     </LayoutAdmin>
   );
 };
