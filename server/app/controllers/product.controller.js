@@ -56,7 +56,11 @@ const productController = {
   },
   edit: async (req, res) => {
     let id = req.params.id
-
+    const files = req.files
+    const imageArr = []
+    for (let i = 0; i < files.length; i++) {
+      imageArr.push(files[i].filename)
+    }
     Product.findByIdAndUpdate(
       id,
       {
@@ -67,6 +71,7 @@ const productController = {
         categoryId: req.body.categoryId,
         brandId: req.body.brandId,
         discount: req.body.discount,
+        images: imageArr,
       },
       function (err, docs) {
         if (err) {
