@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router';
+import {useNavigate, useParams} from 'react-router';
 import axios from 'axios';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
@@ -15,6 +15,7 @@ import {getBrands} from "../../../services/brand.service";
 import {getCategories} from "../../../services/category.service";
 
 const NewProductForm = () => {
+    const navigate = useNavigate();
     const[brands, setBrands] = useState();
     const[categories, setCategories] = useState();
 
@@ -26,7 +27,7 @@ const NewProductForm = () => {
         price: '',
         desc: '',
         discount: '',
-        images: '',
+        images: [],
     });
 
     const { id } = useParams();
@@ -42,10 +43,30 @@ const NewProductForm = () => {
         handleGetCategories();
     }, [id])
 
-    const submitHandler = (data) => {
-        console.log(data)
-        addProduct(data)
+    const submitHandler = async (data) => {
+        const postData = new FormData()
+        for(let key in data){
+            if (key === 'images') {
+                data[key].forEach(file => {
+                    postData.append('images', file);
+                })
+            } else {
+                postData.append(key, data[key]);
+            }
+        }
+        await addProduct(postData);
+        navigate('/admin/products-list-page')
     };
+
+    const onUploadImage = (e) => {
+        const files = Array.from(e.target.files);
+        if (files.length) {
+            setForm({
+                ...form,
+                images: files
+            })
+        }
+    }
 
     async function handleGetBrands(){
         setBrands(await getBrands());
@@ -56,7 +77,18 @@ const NewProductForm = () => {
     }
 
     async function editHandler(){
-        await editProduct(id, form)
+        const postData = new FormData()
+        for(let key in form){
+            if (key === 'images') {
+                form[key].forEach(file => {
+                    postData.append('images', file);
+                })
+            } else {
+                postData.append(key, form[key]);
+            }
+        }
+        await editProduct(id, postData)
+        navigate('/admin/products-list-page')
     }
 
     return (
@@ -198,12 +230,26 @@ const NewProductForm = () => {
                         multiple
                         variant="outlined"
                         // required
-                        onChange={(e) =>setForm({
-                        ...form,
-                        images: e.target.value
-                    })
-                        }
+                        onChange={onUploadImage}
                     />
+                    <br />
+                    {
+                        form.images.map((img, i) => {
+                            if(typeof img === "string"){
+                                return <img src={`http://localhost:8080/${img}`}
+                                            width='50px' height='50px'
+                                            style={{margin: '13px'}}
+                                />
+                            }
+                            else{
+                                const url = URL.createObjectURL(img);
+                                return <img src={url}
+                                            width='50px' height='50px'
+                                            style={{margin: '13px'}}
+                                    />
+                            }
+                        })
+                    }
                     <br />
                     <Box width='200px' margin='5px' display='flex' alignItems='center' justifyContent='space-between'>
                         <Button type='button' disabled={!!id} variant="contained" color="primary"
