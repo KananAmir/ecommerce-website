@@ -85,4 +85,4 @@ const Container = styled.div`
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 33px;
-`;
+`
