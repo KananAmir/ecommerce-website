@@ -12,10 +12,14 @@ import {
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProductsAction } from "../../../redux/actions/products.action";
+import {editProduct} from "../../../services/product.service";
+import {useNavigate} from "react-router";
 
 const ProductsListPage = () => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.productsReducer);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getAllProductsAction());
@@ -56,7 +60,10 @@ const ProductsListPage = () => {
   //   },
   // ];
 
-  console.log(products);
+  async function handleEdit(id){
+    navigate(`/admin/products-crud/${id}`);
+  }
+
   return (
     <LayoutAdmin>
       <TableContainer component={Paper}>
@@ -103,6 +110,7 @@ const ProductsListPage = () => {
                         color: "white",
                       },
                     }}
+                    onClick={() => handleEdit(product._id)}
                   >
                     Edit
                   </Button>

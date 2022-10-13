@@ -10,7 +10,7 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
-import {addProduct, getProducts} from "../../../services/product.service";
+import {addProduct, editProduct, getProducts, getProductsDetail} from "../../../services/product.service";
 import {getBrands} from "../../../services/brand.service";
 import {getCategories} from "../../../services/category.service";
 
@@ -34,7 +34,8 @@ const NewProductForm = () => {
     useEffect(()=>{
         if (id) {
             (async() => {
-                setForm(await getProducts());
+                console.log(await getProductsDetail(id))
+                setForm(await getProductsDetail(id));
             })()
         }
         handleGetBrands();
@@ -46,16 +47,16 @@ const NewProductForm = () => {
         addProduct(data)
     };
 
-    const submitEdit = async () => {
-        await axios.put(`http://localhost:8080/product${id}`)
-    }
-
     async function handleGetBrands(){
         setBrands(await getBrands());
     }
 
     async function handleGetCategories(){
         setCategories(await getCategories());
+    }
+
+    async function editHandler(){
+        await editProduct(id, form)
     }
 
     return (
@@ -209,7 +210,8 @@ const NewProductForm = () => {
                             onClick={() => submitHandler(form)}>
                             Add
                         </Button>
-                        <Button type='submit' disabled={!id} variant="contained" color="primary">
+                        <Button type='button' disabled={!id} variant="contained" color="primary"
+                            onClick={() => editHandler()}>
                             Save
                         </Button>
                     </Box>
