@@ -12,6 +12,7 @@ import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { Link } from "react-router-dom";
 
 const SiteCard = (props) => {
+
   return (
     <Card style={{ width: "345px", minWidth: "175px" }}>
       <CardHeader
@@ -21,7 +22,7 @@ const SiteCard = (props) => {
           </Avatar>
         }
         title={props.name}
-        subheader={props.brandId}
+        subheader={`${props.date.slice(0, 10)} / ${props.date.slice(11, 16)}`}
       />
       <Link
         to={`/product-detail/${props.id}/${props.name
@@ -29,7 +30,7 @@ const SiteCard = (props) => {
           .split(" ")
           .join("-")}`}
       >
-        <CardMedia component="img" height="194" image={props.img} alt="img" />
+        <CardMedia component="img" height="194" image={`http://localhost:8080/${props.img}`} alt="img" />
       </Link>
       <CardContent>
         <>
