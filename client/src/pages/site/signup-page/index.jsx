@@ -58,7 +58,7 @@ const SiteSignUpPage = () => {
       .catch((error) => {
       console.log(error);
       })
-    },
+    }
   });
   const captchaRef = useRef(null);
   return (
@@ -263,7 +263,7 @@ const SiteSignUpPage = () => {
                   Login
                 </Link>
               </span>
-            </div>
+          </div>
             
         </Box>
       </Box>
