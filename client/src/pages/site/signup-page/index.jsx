@@ -12,6 +12,7 @@ import { Row, Col } from "react-grid-system";
 import styles from "./index.module.css";
 import { Helmet } from "react-helmet";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const SiteSignUpPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -246,12 +247,24 @@ const SiteSignUpPage = () => {
              
             </Col>
           </Row>
+          {
+            console.log("capthca: ", process.env.REACT_APP_SITE_KEY)
+          }
           <ReCAPTCHA style={{display:'flex',justifyContent:'center',marginTop:'10px'}} sitekey={process.env.REACT_APP_SITE_KEY} ref={captchaRef}/>
           <Box display="flex" justifyContent="center" sx={{ mt: 1 }}>
             <Button sx={{background:'darkgreen'}} variant="contained" type="submit">
               Sign Up
             </Button>
           </Box>
+          <div className={styles.haveaccount}>
+              <span>
+                Already have an account?{" "}
+                <Link className={styles.loginlink} to="/login">
+                  Login
+                </Link>
+              </span>
+            </div>
+            
         </Box>
       </Box>
     </LayoutSite>

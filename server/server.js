@@ -4,6 +4,7 @@ const connectDb = require('./app/config/database')
 const app = express()
 const path = require('path')
 const bodyParser = require('body-parser')
+const PORT = process.env.PORT;
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(cors())
@@ -21,5 +22,5 @@ app.use('/brand', brandRouter)
 app.use('/product', productRouter)
 
 app.listen(8080, () => {
-  console.log('server running on 8080 !')
+  console.log(`server running on 8080 !`)
 })

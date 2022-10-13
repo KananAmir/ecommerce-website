@@ -12,7 +12,6 @@ import CategoryIcon from '@mui/icons-material/Category';
 import HomeIcon from "@mui/icons-material/Home";
 import GroupIcon from "@mui/icons-material/Group";
 import ProductionQuantityLimitsIcon from "@mui/icons-material/ProductionQuantityLimits";
-import DiscountIcon from "@mui/icons-material/Discount";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import BrandingWatermarkIcon from '@mui/icons-material/BrandingWatermark';
 import { Link, useLocation } from "react-router-dom";
@@ -28,7 +27,6 @@ const AdminHeader = () => {
       to: "/admin/products-list-page",
       icon: <ProductionQuantityLimitsIcon />,
     },
-    { title: "Discounts", to: "/admin", icon: <DiscountIcon /> },
     { title: "Categories", to: "/admin/categories", icon: <CategoryIcon /> },
     { title: "Brands", to: "/admin/brands", icon: <BrandingWatermarkIcon /> },
   ];

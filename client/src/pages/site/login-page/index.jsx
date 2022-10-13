@@ -9,6 +9,7 @@ import { IconButton, InputAdornment, TextField } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import styles from "./index.module.css";
 import { Helmet } from "react-helmet";
+import { Link } from "react-router-dom";
 
 const SiteLoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -118,10 +119,18 @@ const SiteLoginPage = () => {
               Log In
             </Button>
           </Box>
+          <div className={styles.donthaveaccount}>
+              <span>
+                Still don't have an account?{" "}
+                <Link className={styles.registerlink} to="/signup">
+                  Sign Up
+                </Link>
+              </span>
+            </div>
         </Box>
       </Box>
     </LayoutSite>
-    </>
+    </> 
   )
 }
 
