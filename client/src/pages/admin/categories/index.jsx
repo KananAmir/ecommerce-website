@@ -24,7 +24,7 @@ const Categories = () => {
 
     useEffect(() => {
         handleGet();
-    }, [categories])
+    }, [])
 
     async function handleGet(){
         setCategories(await getCategories());
@@ -44,8 +44,7 @@ const Categories = () => {
 
     const handleYeap = () => {
         setOpen(false);
-        deleteCategory(id);
-        handleGet();
+        deleteCategory(id).then(() => handleGet());
     };
 
     function handleDelete(id){
@@ -62,12 +61,11 @@ const Categories = () => {
                 validationSchema={CategoriesSchema}
                 onSubmit={values => {
                     if(buttonRef.current.textContent === 'Add'){
-                        addCategory(values);
+                        addCategory(values).then(() => handleGet());
                         values.name = ''
-                        handleGet();
                     }
                     else{
-                        editCategory(id, values);
+                        editCategory(id, values).then(() => handleGet());
                         setEditButton(false);
                         values.name = '';
                     }
