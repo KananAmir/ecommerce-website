@@ -12,6 +12,7 @@ import { Row, Col } from "react-grid-system";
 import styles from "./index.module.css";
 import { Helmet } from "react-helmet";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const SiteSignUpPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -252,6 +253,15 @@ const SiteSignUpPage = () => {
               Sign Up
             </Button>
           </Box>
+          <div className={styles.haveaccount}>
+              <span>
+                Already have an account?{" "}
+                <Link className={styles.loginlink} to="/login">
+                  Login
+                </Link>
+              </span>
+            </div>
+            
         </Box>
       </Box>
     </LayoutSite>
