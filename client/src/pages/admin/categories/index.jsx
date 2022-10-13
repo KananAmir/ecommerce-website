@@ -2,9 +2,9 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import LayoutAdmin from "../../../layout/LayoutAdmin";
-import TextField from "@mui/material/TextField";
-import {Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@mui/material";
-import {getCategories} from "../../../services/category.service";
+import {Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow,
+        Dialog, DialogActions, DialogContent, DialogContentText} from "@mui/material";
+import {addCategory, deleteCategory, editCategory, getCategories} from "../../../services/category.service";
 
 const CategoriesSchema = Yup.object().shape({
     name: Yup.string()
@@ -16,23 +16,41 @@ const CategoriesSchema = Yup.object().shape({
 const Categories = () => {
     const [editButton, setEditButton] = useState(false);
     const [categories, setCategories] = useState([]);
+    const [open, setOpen] = React.useState(false);
+    const [id, setId] = useState();
+
     const formRef = useRef();
+    const buttonRef = useRef();
 
     useEffect(() => {
-        (async () => {
-            setCategories(await getCategories());
-        })()
-    }, [])
+        handleGet();
+    }, [categories])
+
+    async function handleGet(){
+        setCategories(await getCategories());
+    }
 
     function handleEdit(id){
         formRef.current.values.name = '';
         setEditButton(true);
+        setId(id);
         formRef.current.values.name = categories.find(item => item._id == id).name;
     }
 
     function handleCancel(){
         setEditButton(false);
         formRef.current.values.name = '';
+    }
+
+    const handleYeap = () => {
+        setOpen(false);
+        deleteCategory(id);
+        handleGet();
+    };
+
+    function handleDelete(id){
+        setId(id);
+        setOpen(true);
     }
 
     return (
@@ -43,8 +61,16 @@ const Categories = () => {
                 }}
                 validationSchema={CategoriesSchema}
                 onSubmit={values => {
-                    // same shape as initial values
-                    console.log(values);
+                    if(buttonRef.current.textContent === 'Add'){
+                        addCategory(values);
+                        values.name = ''
+                        handleGet();
+                    }
+                    else{
+                        editCategory(id, values);
+                        setEditButton(false);
+                        values.name = '';
+                    }
                 }}
                 innerRef={formRef}
             >
@@ -56,10 +82,10 @@ const Categories = () => {
                             placeholder='Name'
                             style={{padding: '0 5px'}}
                         />
-                        <Button type="submit" variant="contained"
+                        <Button type="submit" variant="contained" ref = {buttonRef}
                                 color={editButton? 'success': 'primary'}  style={{margin: "0 13px"}} >
                             {
-                                editButton? 'Edit': "Add"
+                                editButton? 'Save': "Add"
                             }
                         </Button>
                         <Button type="button" variant="contained" color='error'
@@ -121,7 +147,9 @@ const Categories = () => {
                                                 backgroundColor: "red",
                                                 color: "white",
                                             },
-                                        }}>
+                                        }}
+                                        onClick={() => handleDelete(category._id)}
+                                    >
                                         Delete
                                     </Button>
                                 </TableCell>
@@ -130,6 +158,22 @@ const Categories = () => {
                     </TableBody>
                 </Table>
             </TableContainer>
+            <Dialog
+                open={open}
+                onClose={() => setOpen(false)}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+            >
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                        Are you sure about deleting this category?
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={() => setOpen(false)}>Nope</Button>
+                    <Button onClick={handleYeap}>Yeap</Button>
+                </DialogActions>
+            </Dialog>
         </LayoutAdmin>
     )
 }
