@@ -61,10 +61,10 @@ const HomePage = () => {
                   return <SiteCard
                       key={index}
                       loading={data.loading}
-                      // name={item.name}
-                      name={item.name ? item.name : ''}
+                      name={item.name}
+                      img = {item.images[0]}
                       id={item._id}
-                      brandId={item.brandId}
+                      date = {item.createdAt}
                       price={item.price}
                   />
               })
@@ -85,4 +85,4 @@ const Container = styled.div`
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 33px;
-`;
+`
