@@ -23,9 +23,10 @@ const productController = {
 
   add: (req, res, next) => {
     const files = req.files
+    console.log(files)
     const imageArr = []
     for (let i = 0; i < files.length; i++) {
-      imageArr.push(files[i].path)
+      imageArr.push(files[i].filename)
     }
     if (!files) {
       const error = new Error('Please choose files')
@@ -42,6 +43,7 @@ const productController = {
       brandId: req.body.brandId,
       images: imageArr,
     })
+    console.log(product)
     product.save((err, docs) => {
       if (!err) {
         res.send(`Product Created ! ${docs}`)
