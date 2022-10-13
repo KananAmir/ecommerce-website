@@ -16,7 +16,12 @@ router.post(
   productController.add,
 )
 //edit
-router.route('/:id', store.array('images', 4)).put(productController.edit)
+router.put(
+  '/:id',
+  store.array('images', 5),
+  productValidation,
+  productController.edit,
+)
 //delete
 router.route('/:id').delete(productController.delete)
 module.exports = router
