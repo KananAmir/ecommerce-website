@@ -80,7 +80,7 @@ export default HomePage;
 // -----------style----------------
 
 const Container = styled.div`
-  padding: 130px 0;
+  padding: 30px 0;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
