@@ -7,14 +7,19 @@ module.exports = function (app) {
     next();
   });
 
-  app.post(
-    "/api/auth/signup",
-    [
-      verifySignUp.checkDuplicateUsernameOrEmail,
-      verifySignUp.checkRolesExisted,
-    ],
-    controller.signup
-  );
+  // app.post(
+  //   "/api/auth/signup",
+  //   [
+  //     verifySignUp.checkDuplicateUsernameOrEmail,
+  //     verifySignUp.checkRolesExisted,
+  //   ],
+  //   controller.signup
+  // );
+  
+  //register
+  app.post("/api/auth/signup", async(req,res)=>{
+    
+  })
 
   app.post("/api/auth/signin", controller.signin);
 
