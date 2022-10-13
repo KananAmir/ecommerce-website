@@ -74,9 +74,10 @@ const SiteHeader = () => {
               />
             </Link>
           </Button>
-
           {/* User Info */}
-          {isLogged === true ? (
+         <Box>
+         <Box>Cart</Box>
+         {isLogged === true ? (
             <>
               <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title="User Info">
@@ -160,6 +161,7 @@ const SiteHeader = () => {
             </Box>
             </>
           )}
+         </Box>
         </Toolbar>
       </Container>
     </AppBar>
@@ -167,3 +169,4 @@ const SiteHeader = () => {
 };
 
 export default SiteHeader;
+ 
