@@ -48,7 +48,6 @@ const UsersListPage = () => {
               <TableCell align="center">Email</TableCell>
               <TableCell align="center">Address</TableCell>
               <TableCell align="center">Password</TableCell>
-              <TableCell align="center">Edit</TableCell>
               <TableCell align="center">Delete</TableCell>
             </TableRow>
           </TableHead>
@@ -64,21 +63,6 @@ const UsersListPage = () => {
                 <TableCell align="center">{user.email}</TableCell>
                 <TableCell align="center">{user.address}</TableCell>
                 <TableCell align="center">{user.password}</TableCell>
-                <TableCell align="center">
-                  <Button
-                    sx={{
-                      color: "green",
-                      fontWeight: "500",
-                      border: "1px solid green",
-                      ":hover": {
-                        backgroundColor: "green",
-                        color: "white",
-                      },
-                    }}
-                  >
-                    Edit
-                  </Button>
-                </TableCell>
                 <TableCell align="center">
                   <Button
                     sx={{

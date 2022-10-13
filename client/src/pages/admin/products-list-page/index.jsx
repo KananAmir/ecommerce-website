@@ -14,11 +14,6 @@ import {
   DialogContent,
   DialogContentText,
 } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  getAllProductsAction,
-  removeProductAction,
-} from "../../../redux/actions/products.action";
 import { deleteProduct, getProducts } from "../../../services/product.service";
 
 const ProductsListPage = () => {
@@ -28,7 +23,7 @@ const ProductsListPage = () => {
 
   useEffect(() => {
     handleGet();
-  }, [products]);
+  }, []);
 
   async function handleGet() {
     setProducts(await getProducts());
@@ -36,8 +31,7 @@ const ProductsListPage = () => {
 
   const handleYeap = () => {
     setOpen(false);
-    deleteProduct(id);
-    handleGet();
+    deleteProduct(id).then(() => handleGet());
   };
 
   function handleDelete(id) {
