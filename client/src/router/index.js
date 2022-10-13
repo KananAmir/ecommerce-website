@@ -12,8 +12,9 @@ import UsersListPage from "../pages/admin/users-list-page";
 import ProductsListPage from "../pages/admin/products-list-page";
 import AdminLoginPage from "../pages/admin/login-page";
 import AddProduct from "../pages/admin/add-product";
-import AddCategory from "../pages/admin/add-category";
-import AddBrand from "../pages/admin/add-brand";
+import AddDiscount from "../pages/admin/add-discount";
+import Categories from "../pages/admin/categories";
+import Brands from "../pages/admin/brands";
 import NotFound from "pages/site/notfound";
 
 function Routing() {
@@ -36,10 +37,8 @@ function Routing() {
                 <Route path='/admin/products-list-page' element = {<ProductsListPage/>} />
                 <Route path='/admin/products-crud' element = {<AddProduct/>} />
                 <Route path='/admin/products-crud/:id' element = {<AddProduct/>} />
-                <Route path='/admin/category-crud' element = {<AddCategory/>} />
-                <Route path='/admin/category-crud/:id' element = {<AddCategory/>} />
-                <Route path='/admin/brand-crud' element = {<AddBrand/>} />
-                <Route path='/admin/brand-crud/:id' element = {<AddBrand/>} />
+                <Route path='/admin/categories' element = {<Categories/>} />
+                <Route path='/admin/brands' element = {<Brands/>} />
             </Routes>
         </>
     )

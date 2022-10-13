@@ -23,10 +23,14 @@ const productController = {
 
   add: (req, res, next) => {
     const files = req.files
+    const imageArr = []
+    for (let i = 0; i < files.length; i++) {
+      imageArr.push(files[i].path)
+    }
     if (!files) {
-      const err = new Error('Please choose files !')
-      err.httpStatusCode = 400
-      return next(err)
+      const error = new Error('Please choose files')
+      error.httpStatusCode = 400
+      return next(error)
     }
     let product = new Product({
       name: req.body.name,
@@ -36,31 +40,40 @@ const productController = {
       stock: req.body.stock,
       categoryId: req.body.categoryId,
       brandId: req.body.brandId,
-      images: req.files,
+      images: imageArr,
     })
-    res.send(product)
-    product.save((err, doc) => {
-      res.json(doc)
+    product.save((err, docs) => {
+      if (!err) {
+        res.send(`Product Created ! ${docs}`)
+      }
     })
   },
-  edit: (req, res) => {
+  edit: async (req, res) => {
     let id = req.params.id
 
-    Product.findByIdAndUpdate(id, { name: req.body.name }, function (
-      err,
-      docs,
-    ) {
-      if (err) {
-        console.log(err)
-      } else {
-        console.log(docs)
-      }
-      res.send('Brand Edited !')
-    })
+    Product.findByIdAndUpdate(
+      id,
+      {
+        name: req.body.name,
+        desc: req.body.desc,
+        stock: req.body.stock,
+        price: req.body.price,
+        categoryId: req.body.categoryId,
+        brandId: req.body.brandId,
+        discount: req.body.discount,
+      },
+      function (err, docs) {
+        if (err) {
+          console.log(err)
+        } else {
+          console.log(docs)
+        }
+        res.send('Prod Edited !')
+      },
+    )
   },
   delete: (req, res) => {
     let id = req.params.id
-
     Product.findByIdAndDelete(id, (err, doc) => {
       if (!err) {
         res.json('Product Deleted !')
