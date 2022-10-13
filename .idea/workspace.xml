@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9a444c74-e22b-488c-b930-776b3de8254f" name="Changes" comment="feat: useefect added to site home page">
-      <change afterPath="$PROJECT_DIR$/client/src/pages/admin/brands/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/admin/admin-header/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/admin/admin-header/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/site/site-card/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/site/site-card/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/admin/add-brand/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/admin/add-category/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/admin/categories/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/site/home/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/site/home/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/router/index.js" afterDir="false" />
-    </list>
+    <list default="true" id="9a444c74-e22b-488c-b930-776b3de8254f" name="Changes" comment="feat: useefect added to site home page" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -58,7 +49,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1665557158748</updated>
-      <workItem from="1665557159865" duration="24094000" />
+      <workItem from="1665557159865" duration="24471000" />
     </task>
     <task id="LOCAL-00001" summary="fix: conflicts handled">
       <created>1665562421814</created>
