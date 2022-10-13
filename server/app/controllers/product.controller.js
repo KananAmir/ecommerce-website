@@ -1,5 +1,7 @@
+const { Aggregate, default: mongoose } = require('mongoose')
 const { Product } = require('../models/product.model')
-
+const { Category } = require('../models/category.model')
+const { Brand } = require('../models/brand.model')
 const productController = {
   getAll: (req, res) => {
     Product.find({}, (err, docs) => {
@@ -39,8 +41,10 @@ const productController = {
       price: req.body.price,
       discount: req.body.discount,
       stock: req.body.stock,
-      categoryId: req.body.categoryId,
-      brandId: req.body.brandId,
+      categoryId: mongoose.Types.ObjectId(req.body.categoryId),
+      category: Category.findById(req.body.categoryId),
+      brandId: mongoose.Types.ObjectId(req.body.brandId),
+      brand: Brand.findById(req.body.brandId),
       images: imageArr,
     })
     console.log(product)
