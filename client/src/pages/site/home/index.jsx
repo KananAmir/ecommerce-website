@@ -186,7 +186,25 @@ const HomePage = () => {
                     </Card>
                   );
                 })
-            : renderProducts()}
+            : !search.length
+            ? renderProducts()
+            : data.data
+                ?.filter((item) =>
+                  item.name.toLocaleLowerCase("en-US").includes(search)
+                )
+                .map((item, index) => {
+                  return (
+                    <SiteCard
+                      key={index}
+                      loading={data.loading}
+                      name={item.name ? item.name : ""}
+                      img={item.images[0]}
+                      id={item._id}
+                      date={item.createdAt}
+                      price={item.price}
+                    />
+                  );
+                })}
         </Container>
       </LayoutSite>
     </>
