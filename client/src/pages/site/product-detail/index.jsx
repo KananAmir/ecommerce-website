@@ -34,6 +34,11 @@ const ProductDetail = () => {
     setIsLoading(false);
   };
 
+  const sliderImages = [];
+  product.images.forEach(item => {
+    sliderImages.push(`http://localhost:8080/${item}`);
+  })
+
   return (
     <>
       <Helmet>
@@ -62,7 +67,7 @@ const ProductDetail = () => {
                 <SimpleImageSlider
                   width={400}
                   height={400}
-                  images={product.images}
+                  images={sliderImages}
                   showBullets={true}
                   showNavs={true}
                   slideDuration={1.5}
