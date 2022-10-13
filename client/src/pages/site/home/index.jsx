@@ -1,25 +1,43 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import LayoutSite from "../../../layout/LatoutSite";
 import SiteCard from "../../../components/site/site-card";
 import { Helmet } from "react-helmet";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProductsAction } from "../../../redux/actions/products.action";
+import { getCategories } from "services/category.service";
+
 import {
   Card,
   CardContent,
   CardHeader,
   Skeleton,
   TextField,
+  Select,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Box,
 } from "@mui/material";
 
 const HomePage = () => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.productsReducer);
+  const [categories, setCategories] = useState("");
+  const [category, setCategory] = useState("");
 
   useEffect(() => {
     dispatch(getAllProductsAction());
+    getAllCategories();
   }, [dispatch]);
+
+  const getAllCategories = async () => {
+    setCategories(await getCategories());
+  };
+
+  const handleChange = (event) => {
+    setCategory(event.target.value);
+  };
 
   return (
     <>
@@ -32,6 +50,24 @@ const HomePage = () => {
       </Helmet>
       <LayoutSite>
         <Center>
+          <Box sx={{ minWidth: 200 }}>
+            <FormControl fullWidth>
+              <InputLabel id="demo-simple-select-label">Category</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={category}
+                label="Category"
+                onChange={handleChange}
+              >
+                {categories &&
+                  categories.map((item) => (
+                    <MenuItem value={item.name}>{item.name}</MenuItem>
+                  ))}
+              </Select>
+            </FormControl>
+          </Box>
+
           <TextField
             id="outlined-basic"
             label="Search Product"
@@ -135,5 +171,5 @@ const Container = styled.div`
 const Center = styled.div`
   margin-top: 100px;
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
 `;
