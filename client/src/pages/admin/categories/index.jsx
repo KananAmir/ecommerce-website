@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import LayoutAdmin from "../../../layout/LayoutAdmin";
 import TextField from "@mui/material/TextField";
 import {Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@mui/material";
+import {getCategories} from "../../../services/category.service";
 
 const CategoriesSchema = Yup.object().shape({
     name: Yup.string()
@@ -14,19 +15,14 @@ const CategoriesSchema = Yup.object().shape({
 
 const Categories = () => {
     const [editButton, setEditButton] = useState(false);
+    const [categories, setCategories] = useState([]);
     const formRef = useRef();
 
-
-    const categories = [
-        {
-            name: "Texnologiya",
-            _id: '13'
-        },
-        {
-            name: "Geyim",
-            _id: '31'
-        },
-    ];
+    useEffect(() => {
+        (async () => {
+            setCategories(await getCategories());
+        })()
+    }, [])
 
     function handleEdit(id){
         formRef.current.values.name = '';
