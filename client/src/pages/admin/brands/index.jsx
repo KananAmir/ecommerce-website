@@ -3,6 +3,8 @@ import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import LayoutAdmin from "../../../layout/LayoutAdmin";
 import {Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@mui/material";
+import {getCategories} from "../../../services/category.service";
+import {getBrands} from "../../../services/brand.service";
 
 const CategoriesSchema = Yup.object().shape({
     name: Yup.string()
@@ -13,18 +15,14 @@ const CategoriesSchema = Yup.object().shape({
 
 const Brands = () => {
     const [editButton, setEditButton] = useState(false);
+    const [brands, setBrands] = useState([]);
     const formRef = useRef();
 
-    const brands = [
-        {
-            name: "Apple",
-            _id: '33'
-        },
-        {
-            name: "Zara",
-            _id: '113'
-        },
-    ];
+    useEffect(() => {
+        (async () => {
+            setBrands(await getBrands());
+        })()
+    }, [])
 
     function handleEdit(id){
         setEditButton(true);
