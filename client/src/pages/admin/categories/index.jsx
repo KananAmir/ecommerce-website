@@ -16,6 +16,7 @@ const Categories = () => {
     const [editButton, setEditButton] = useState(false);
     const formRef = useRef();
 
+
     const categories = [
         {
             name: "Texnologiya",

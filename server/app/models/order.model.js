@@ -1,10 +1,9 @@
 import mongoose from 'mongoose'
-
+import { ORDER_STATUS } from '../constants/order.status'
 const orderSchema = new mongoose.Schema(
   {
     orderItems: [
       {
-        slug: { type: String, required: true },
         name: { type: String, required: true },
         count: { type: Number, required: true },
         image: { type: String, required: true },
@@ -18,23 +17,19 @@ const orderSchema = new mongoose.Schema(
       fullName: { type: String, required: true },
       postalCode: { type: String, required: true },
     },
-    paymentMethod: { type: String, required: true },
-    paymentResult: {
-      id: String,
-      status: String,
-      update_time: String,
-      email_address: String,
-    },
-    itemsPrice: { type: Number, required: true },
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
       required: true,
     },
-    isPaid: { type: Boolean, default: false },
-    paidAt: { type: Date },
-    isDelivered: { type: Boolean, default: false },
-    deliveredAt: { type: Date },
+    TotalPrice: {
+      type: Number,
+      default: 0,
+    },
+    Status: {
+      type: String,
+      default: ORDER_STATUS[0],
+    },
   },
   {
     timestamps: true,

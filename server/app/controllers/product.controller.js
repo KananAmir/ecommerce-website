@@ -1,5 +1,7 @@
+const { Aggregate, default: mongoose } = require('mongoose')
 const { Product } = require('../models/product.model')
-
+const { Category } = require('../models/category.model')
+const { Brand } = require('../models/brand.model')
 const productController = {
   getAll: (req, res) => {
     Product.find({}, (err, docs) => {
@@ -23,9 +25,10 @@ const productController = {
 
   add: (req, res, next) => {
     const files = req.files
+    console.log(files)
     const imageArr = []
     for (let i = 0; i < files.length; i++) {
-      imageArr.push(files[i].path)
+      imageArr.push(files[i].filename)
     }
     if (!files) {
       const error = new Error('Please choose files')
@@ -38,10 +41,13 @@ const productController = {
       price: req.body.price,
       discount: req.body.discount,
       stock: req.body.stock,
-      categoryId: req.body.categoryId,
-      brandId: req.body.brandId,
+      categoryId: mongoose.Types.ObjectId(req.body.categoryId),
+      category: Category.findById(req.body.categoryId),
+      brandId: mongoose.Types.ObjectId(req.body.brandId),
+      brand: Brand.findById(req.body.brandId),
       images: imageArr,
     })
+    console.log(product)
     product.save((err, docs) => {
       if (!err) {
         res.send(`Product Created ! ${docs}`)
