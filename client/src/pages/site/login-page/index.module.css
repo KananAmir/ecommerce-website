@@ -9,3 +9,11 @@
        min-width: 100% !important;
      } 
 }
+.donthaveaccount{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+.registerlink{
+    text-decoration: underline !important;
+}
