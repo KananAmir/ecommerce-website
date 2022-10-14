@@ -18,29 +18,29 @@ import {
   MenuItem,
   Box,
 } from "@mui/material";
-import {getBrands} from "../../../services/brand.service";
+import {getBrandById} from "../../../services/brand.service";
 
 const HomePage = () => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.productsReducer);
   const [isFiltered, setIsFiltered] = useState(false);
   const [categories, setCategories] = useState([]);
-  const [brands, setBrands] = useState([]);
+  const [brand, setBrand] = useState();
   const [categoryId, setCategoryId] = useState({});
   const [search, setSearch] = useState("");
 
   useEffect(() => {
     dispatch(getAllProductsAction());
     getAllCategories();
-    getAllBrands();
   }, [dispatch]);
 
   const getAllCategories = async () => {
     setCategories(await getCategories());
   };
 
-  const getAllBrands = async () => {
-    setBrands(await getBrands());
+  const handleGetBrandById = async (id) => {
+    let result = await getBrandById(id)
+    return result;
   };
 
   const handleChange = (event) => {
@@ -70,6 +70,7 @@ const HomePage = () => {
                 id={item._id}
                 date={item.createdAt}
                 price={item.price}
+                brandName={handleGetBrandById(item.brandId)}
               />
             );
           }))
@@ -83,6 +84,7 @@ const HomePage = () => {
               id={item._id}
               date={item.createdAt}
               price={item.price}
+              brandName={handleGetBrandById(item.brandId)}
             />
           );
         }));
@@ -209,6 +211,7 @@ const HomePage = () => {
                       id={item._id}
                       date={item.createdAt}
                       price={item.price}
+                      brandName={handleGetBrandById(item.brandId)}
                     />
                   );
                 })}
@@ -223,7 +226,7 @@ export default HomePage;
 // -----------style----------------
 
 const Container = styled.div`
-  padding: 30px 0;
+  padding: 30px 0 70px;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
