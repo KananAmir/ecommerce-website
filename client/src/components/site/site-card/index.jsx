@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {
   Card,
   CardHeader,
@@ -12,6 +12,16 @@ import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { Link } from "react-router-dom";
 
 const SiteCard = (props) => {
+    const[brand, setBrand] = useState();
+
+    useEffect(() => {
+        handleBrand();
+    }, [])
+
+    async function handleBrand(){
+        let result = await props.brandName;
+        setBrand(result.name);
+    }
 
   return (
     <Card style={{ width: "345px", minWidth: "175px" }}>
@@ -21,7 +31,7 @@ const SiteCard = (props) => {
             {props.name[0]}
           </Avatar>
         }
-        title={props.name}
+        title={brand}
         subheader={`${props.date.slice(0, 10)} / ${props.date.slice(11, 16)}`}
       />
       <Link
