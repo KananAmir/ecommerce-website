@@ -1,4 +1,4 @@
-const Users = require("../model/users");
+const Users = require("../models/user.model");
 const bodyParser = require("body-parser");
 const express = require("express");
 

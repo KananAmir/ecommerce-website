@@ -5,7 +5,11 @@ const User = db.user;
 const Role = db.role;
 
 verifyToken = (req, res, next) => {
-  let token = req.session.token;
+  const token =
+    req.body.token ||
+    req.query.token ||
+    req.headers["x-access-token"] ||
+    req.session.token;
 
   if (!token) {
     return res.status(403).send({ message: "No token provided!" });
@@ -44,13 +48,12 @@ isAdmin = (req, res, next) => {
           }
         }
 
-        res.status(403).send({ message: "Require admin Role!" });
+        res.status(403).send({ message: "Require Admin Role!" });
         return;
       }
     );
   });
 };
-
 
 const authJwt = {
   verifyToken,

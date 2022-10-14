@@ -22,16 +22,13 @@ const User = mongoose.model(
       required:true,
       minLength:[5,'Password should be minimum of 5 characters']
     },
-    addDate: { type: Date, default: Date.now },
-    // token:{
-    //   type:String
-    // },  
-    // roles: [
-    //   {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: "Role",
-    //   },
-    // ],
+    date: { type: Date, default: Date.now },
+    roles: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Role"
+      }
+    ]
   })
 );
 
