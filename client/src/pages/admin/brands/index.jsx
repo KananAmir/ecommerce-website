@@ -25,7 +25,7 @@ const Brands = () => {
 
     useEffect(() => {
         handleGet();
-    }, [brands])
+    }, [])
 
     async function handleGet(){
         setBrands(await getBrands());
@@ -44,8 +44,7 @@ const Brands = () => {
 
     const handleYeap = () => {
         setOpen(false);
-        deleteBrand(id);
-        handleGet();
+        deleteBrand(id).then(() => handleGet());
     };
 
     function handleDelete(id){
@@ -62,12 +61,11 @@ const Brands = () => {
                 validationSchema={CategoriesSchema}
                 onSubmit={values => {
                     if(buttonRef.current.textContent === 'Add'){
-                        addBrand(values);
+                        addBrand(values).then(() => handleGet());
                         values.name = ''
-                        handleGet();
                     }
                     else{
-                        editBrand(id, values);
+                        editBrand(id, values).then(() => handleGet());
                         setEditButton(false);
                         values.name = '';
                     }
