@@ -10,7 +10,7 @@ import {
 import { red } from "@mui/material/colors";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCartAction } from "../../../redux/actions/cart.action";
 
 const SiteCard = (props) => {
@@ -28,7 +28,7 @@ const SiteCard = (props) => {
   const dispatch = useDispatch()
 
   const onAddToCart = () => {    
-    dispatch(addToCartAction(props))
+    dispatch(addToCartAction(props));
   }
 
   return (

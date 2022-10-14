@@ -13,15 +13,17 @@ import { addToCartAction, removeCartAction } from "../../../redux/actions/cart.a
 import { useDispatch, useSelector } from "react-redux";
 
 const CartPage = () => {
-
-  const cartState = useSelector((state) => state.cartReducer);
-
   const dispatch = useDispatch()
+  const stateCart = useSelector(state => state.cartReducer);
+
+  let cartState = JSON.parse(localStorage.getItem('cart'));
+  // useEffect(() => {
+  //   console.log(cartState)
+  // }, [stateCart])
 
   const removeFromCart = (id) => {
-    dispatch(removeCartAction(id))    
+    dispatch(removeCartAction(id))
   }
-
 
   return (
     <LayoutSite>
@@ -29,7 +31,7 @@ const CartPage = () => {
       <TableContainer component={Paper}>
       <Table aria-label="simple table">
         <TableHead>
-          <TableRow>
+          <TableRow >
             <TableCell align="center">Product name</TableCell>
             <TableCell align="center">Price</TableCell>
             <TableCell align="center">Total Price</TableCell>
@@ -40,7 +42,7 @@ const CartPage = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {cartState.map((row) => (
+          {cartState?.map((row) => (
             <TableRow
               key={row.id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
