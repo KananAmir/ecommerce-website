@@ -21,6 +21,7 @@ import {
 } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
 const SiteHeader = () => {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
