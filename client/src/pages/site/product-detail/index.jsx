@@ -95,8 +95,13 @@ const ProductDetail = () => {
                   <h3 sx={{ m: 2 }}>Category: {product.category}</h3>
                   <h4>Price: {product.price} Azn</h4>
                   <h4>Stock: {product.stock}</h4>
+<<<<<<< HEAD
                   <p>Description: {product.description}</p>
                   <Button variant="outlined" onClick={onAddToCart}>
+=======
+                  <h4>Description: {product.desc}</h4>
+                  <Button variant="outlined">
+>>>>>>> main
                     Add to Cart <AddShoppingCartIcon />
                   </Button>
                 </Content>

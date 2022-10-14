@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {
   Card,
   CardHeader,
@@ -14,6 +14,16 @@ import { useDispatch } from "react-redux";
 import { addToCartAction } from "../../../redux/actions/cart.action";
 
 const SiteCard = (props) => {
+    const[brand, setBrand] = useState();
+
+    useEffect(() => {
+        handleBrand();
+    }, [])
+
+    async function handleBrand(){
+        let result = await props.brandName;
+        setBrand(result.name);
+    }
 
   const dispatch = useDispatch()
 
@@ -29,7 +39,7 @@ const SiteCard = (props) => {
             {props.name[0]}
           </Avatar>
         }
-        title={props.name}
+        title={brand}
         subheader={`${props.date.slice(0, 10)} / ${props.date.slice(11, 16)}`}
       />
       <Link
