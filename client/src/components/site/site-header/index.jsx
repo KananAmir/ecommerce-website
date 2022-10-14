@@ -59,7 +59,13 @@ const SiteHeader = () => {
     setOpen(false);
   };
 
-  const [isLogged, setIsLogged] = useState(false);
+  const checkUser = JSON.parse(localStorage.getItem('user'));
+  console.log('check user is: ',checkUser);
+  let loggedCheck = false;
+  if(checkUser!==null){
+    loggedCheck = true;
+  }
+  const [isLogged, setIsLogged] = useState(loggedCheck);
   return (
     <AppBar
       sx={{
@@ -95,7 +101,7 @@ const SiteHeader = () => {
           {isLogged === true ? (
               <>
                 <Box sx={{ flexGrow: 0 }}>
-                  <Tooltip title="User Info">
+                  <Tooltip title={`${checkUser.username}`}>
                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                       <img
                         width={40}

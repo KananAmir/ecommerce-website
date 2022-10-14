@@ -3,6 +3,7 @@ const cors = require('cors')
 const connectDb = require('./app/config/database')
 const app = express()
 const bodyParser = require('body-parser')
+const PORT = process.env.PORT;
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(cors())
@@ -38,29 +39,3 @@ require('./app/routes/user.routes')(app)
 app.listen(8080, () => {
   console.log(`server running on 8080 !`)
 })
-
-function initial() {
-  Role.estimatedDocumentCount((err, count) => {
-    if (!err && count === 0) {
-      new Role({
-        name: "user"
-      }).save(err => {
-        if (err) {
-          console.log("error", err);
-        }
-
-        console.log("added 'user' to roles collection");
-      });
-
-      new Role({
-        name: "admin"
-      }).save(err => {
-        if (err) {
-          console.log("error", err);
-        }
-
-        console.log("added 'admin' to roles collection");
-      });
-    }
-  });
-}
