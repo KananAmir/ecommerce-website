@@ -57,7 +57,7 @@ const SiteSignUpPage = () => {
       .then(res => {
         console.log('user registered successfully! - res: ', res);
         navigate('/')
-      })
+      }) 
       .catch((error) => {
       console.log('error: ',error);
       })
