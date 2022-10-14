@@ -67,7 +67,7 @@ const HomePage = () => {
                 loading={data.loading}
                 name={item.name ? item.name : ""}
                 img={item.images[0]}
-                id={item._id}
+                _id={item._id}
                 date={item.createdAt}
                 price={item.price}
                 brandName={handleGetBrandById(item.brandId)}
@@ -81,7 +81,7 @@ const HomePage = () => {
               loading={data.loading}
               name={item.name ? item.name : ""}
               img={item.images[0]}
-              id={item._id}
+              _id={item._id}
               date={item.createdAt}
               price={item.price}
               brandName={handleGetBrandById(item.brandId)}
@@ -208,7 +208,7 @@ const HomePage = () => {
                       loading={data.loading}
                       name={item.name ? item.name : ""}
                       img={item.images[0]}
-                      id={item._id}
+                      _id={item._id}
                       date={item.createdAt}
                       price={item.price}
                       brandName={handleGetBrandById(item.brandId)}

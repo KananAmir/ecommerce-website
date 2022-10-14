@@ -10,6 +10,8 @@ import {
 import { red } from "@mui/material/colors";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addToCartAction } from "../../../redux/actions/cart.action";
 
 const SiteCard = (props) => {
     const[brand, setBrand] = useState();
@@ -23,6 +25,12 @@ const SiteCard = (props) => {
         setBrand(result.name);
     }
 
+  const dispatch = useDispatch()
+
+  const onAddToCart = () => {    
+    dispatch(addToCartAction(props))
+  }
+
   return (
     <Card style={{ width: "345px", minWidth: "175px" }}>
       <CardHeader
@@ -35,7 +43,7 @@ const SiteCard = (props) => {
         subheader={`${props.date.slice(0, 10)} / ${props.date.slice(11, 16)}`}
       />
       <Link
-        to={`/product-detail/${props.id}/${props.name
+        to={`/product-detail/${props._id}/${props.name
           .toLocaleLowerCase("en-US")
           .split(" ")
           .join("-")}`}
@@ -52,7 +60,7 @@ const SiteCard = (props) => {
             }}
           >
             <h2>{props.price} AZN</h2>
-            <AddShoppingCartIcon style={icon} />
+            <AddShoppingCartIcon style={icon} onClick={onAddToCart} />
           </div>
           <Typography variant="body2" color="text.secondary">
             {props.name}
