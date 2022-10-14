@@ -174,7 +174,7 @@ const SiteHeader = () => {
                 </Button>
                 <IconButton aria-label="cart">
                   <Link to="/cart">
-                  <StyledBadge badgeContent={ JSON.parse(localStorage.getItem('cart')).length} color="secondary">
+                  <StyledBadge badgeContent={ JSON.parse(localStorage.getItem('cart'))?.length} color="secondary">
                     <ShoppingCartIcon />
                   </StyledBadge>
                   </Link>
