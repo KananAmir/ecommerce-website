@@ -12,7 +12,7 @@ import { Row, Col } from "react-grid-system";
 import styles from "./index.module.css";
 import { Helmet } from "react-helmet";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 const SiteSignUpPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -48,17 +48,23 @@ const SiteSignUpPage = () => {
         .oneOf([Yup.ref("password")], "Passwords must match")
         .required("Required"),
     }),
-    onSubmit: async(values) => {
-      const token = captchaRef.current.getValue();
-      console.log("token: ", token);
-      captchaRef.current.reset();
-
-      await axios.post(process.env.REACT_APP_API_URL, {token})
-      .then(res =>  console.log(res))
-      .catch((error) => {
-      console.log(error);
-      })
-    }
+    onSubmit: (values) => {
+      axios
+        .post(
+         "localhost:8080/api/auth/signup",
+          values
+        )
+        .then((res) => {
+          if (res.status === 200) {
+            console.log('registered successfully!');
+            setTimeout(() => {
+              Navigate("/login");
+            }, 1500);
+          }
+        })
+        .catch((res) => {
+    });
+  },
   });
   const captchaRef = useRef(null);
   return (

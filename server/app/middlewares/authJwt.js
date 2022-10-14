@@ -1,11 +1,15 @@
 const jwt = require("jsonwebtoken");
-const config = require("../config/auth.config");
+const config = require("../config/auth.config.js");
 const db = require("../models");
 const User = db.user;
 const Role = db.role;
 
 verifyToken = (req, res, next) => {
-  let token = req.headers["x-access-token"];
+  const token =
+    req.body.token ||
+    req.query.token ||
+    req.headers["x-access-token"] ||
+    req.session.token;
 
   if (!token) {
     return res.status(403).send({ message: "No token provided!" });
@@ -29,7 +33,7 @@ isAdmin = (req, res, next) => {
 
     Role.find(
       {
-        _id: { $in: user.roles }
+        _id: { $in: user.roles },
       },
       (err, roles) => {
         if (err) {
