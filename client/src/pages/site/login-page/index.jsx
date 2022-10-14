@@ -9,9 +9,12 @@ import { IconButton, InputAdornment, TextField } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import styles from "./index.module.css";
 import { Helmet } from "react-helmet";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const SiteLoginPage = () => {
+
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const handleMouseDownPassword = () => setShowPassword(!showPassword);
   const handleMouseUpPassword = () => setShowPassword(!showPassword);
@@ -29,10 +32,17 @@ const SiteLoginPage = () => {
         .required("Required"),
     }),
     onSubmit: async(values) => {
-      console.log(values);
+      await axios.post('http://localhost:8080/api/auth/signin', {...values})
+      .then(res => {
+        console.log('user logged in successfully! - res: ', res);
+        localStorage.setItem('user', JSON.stringify(res.data));
+        navigate('/')
+      })
+      .catch((error) => {
+      console.log('error: ',error);
+      })
     },
   });
-  const captchaRef = useRef(null);
   return (
     <>
     <Helmet>

@@ -33,12 +33,8 @@ app.use('/product', productRouter)
 app.use('/orderitem', orderItemRouter)
 app.use('/order', orderRouter)
 
-// app.use(require('./app/routes/auth.routes'))(app) 
-// app.use(require('./app/routes/user.routes'))(app)
-
-// require('./app/routes/auth.routes')(app)
-// require('./app/routes/user.routes')(app)
-
+require('./app/routes/auth.routes')(app)
+require('./app/routes/user.routes')(app)
 
 app.listen(8080, () => {
   console.log(`server running on 8080 !`)

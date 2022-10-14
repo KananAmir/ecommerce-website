@@ -12,9 +12,10 @@ import { Row, Col } from "react-grid-system";
 import styles from "./index.module.css";
 import { Helmet } from "react-helmet";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate  } from "react-router-dom";
 
 const SiteSignUpPage = () => {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const handleMouseDownPassword = () => setShowPassword(!showPassword);
   const handleMouseUpPassword = () => setShowPassword(!showPassword);
@@ -52,8 +53,11 @@ const SiteSignUpPage = () => {
       const token = captchaRef.current.getValue();
       captchaRef.current.reset();
 
-      await axios.post('http://localhost:8080/api/auth/signup', {token})
-      .then(res =>  console.log(res))
+      await axios.post('http://localhost:8080/api/auth/signup', {...values,token})
+      .then(res => {
+        console.log('user registered successfully! - res: ', res);
+        navigate('/')
+      })
       .catch((error) => {
       console.log('error: ',error);
       })
