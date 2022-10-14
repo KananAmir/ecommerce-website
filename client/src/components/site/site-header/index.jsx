@@ -13,7 +13,10 @@ import logo from "../../../assets/shoplogo.png";
 import avatarImg from "../../../assets/default_avatar.jpg";
 import { Link } from "react-router-dom";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import styles from './index.module.css'
+import Badge from '@mui/material/Badge';
+import { styled } from '@mui/material/styles';
+import { useSelector } from "react-redux";
+
 
 import {
   Dialog,
@@ -24,9 +27,18 @@ import {
 } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+
+const StyledBadge = styled(Badge)(({ theme }) => ({
+  '& .MuiBadge-badge': {
+    right: -3,
+    top: 13,
+    border: `2px solid ${theme.palette.background.paper}`,
+    padding: '0 4px',
+  },
+}));
 
 const SiteHeader = () => {
+  const cartState = useSelector((state) => state.cartReducer);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
@@ -79,11 +91,6 @@ const SiteHeader = () => {
             </Link>
           </Button>
           {/* User Info */}
-          <Box>
-            <Button>
-              <Link to="/cart"><ShoppingCartIcon className={styles.carticon}></ShoppingCartIcon><sup>0</sup></Link>
-            </Button>
-          </Box>
          <Box>
           {isLogged === true ? (
               <>
@@ -166,6 +173,13 @@ const SiteHeader = () => {
                     <Typography  sx={{color:'white',fontWeight:'bold'}} textAlign="center">Sign Up</Typography>
                   </Link>
                 </Button>
+                <IconButton aria-label="cart">
+                  <Link to="/cart">
+                  <StyledBadge badgeContent={cartState.length} color="secondary">
+                    <ShoppingCartIcon />
+                  </StyledBadge>
+                  </Link>
+                </IconButton>
               </Box>
               </>
             )}
@@ -176,6 +190,12 @@ const SiteHeader = () => {
     </AppBar>
   );
 };
+
+// <Box>
+{/* <Button>
+<Link to="/cart"><ShoppingCartIcon className={styles.carticon}></ShoppingCartIcon><sup>{}</sup></Link>
+</Button>
+</Box> */}
 
 export default SiteHeader;
  
