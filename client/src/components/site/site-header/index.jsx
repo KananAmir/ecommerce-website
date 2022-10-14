@@ -13,7 +13,6 @@ import logo from "../../../assets/shoplogo.png";
 import avatarImg from "../../../assets/default_avatar.jpg";
 import { Link } from "react-router-dom";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import styles from './index.module.css'
 
 import {
   Dialog,
@@ -25,14 +24,30 @@ import {
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 
+import Badge from '@mui/material/Badge';
+import { styled } from '@mui/material/styles';
+
+const StyledBadge = styled(Badge)(({ theme }) => ({
+  '& .MuiBadge-badge': {
+    right: -3,
+    top: 13,
+    border: `2px solid ${theme.palette.background.paper}`,
+    padding: '0 4px',
+  },
+}));
+
 const SiteHeader = () => {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [cartIcon, setCartIcon] = useState(0);
+
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
+
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
   const [open, setOpen] = React.useState(false);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
@@ -78,11 +93,11 @@ const SiteHeader = () => {
             </Link>
           </Button>
           {/* User Info */}
-          <Box>
-            <Button>
-              <Link to="/cart"><ShoppingCartIcon className={styles.carticon}></ShoppingCartIcon><sup>0</sup></Link>
-            </Button>
-          </Box>
+          {/*<Box>*/}
+          {/*  <Button>*/}
+          {/*    <Link to="/cart"><ShoppingCartIcon className={styles.carticon}></ShoppingCartIcon><sup>0</sup></Link>*/}
+          {/*  </Button>*/}
+          {/*</Box>*/}
          <Box>
           {isLogged === true ? (
               <>
@@ -124,7 +139,6 @@ const SiteHeader = () => {
                         Log Out
                       </Typography>
                     </MenuItem>
-
                     {/* Log Out Modal */}
                     <Dialog
                       fullScreen={fullScreen}
@@ -165,6 +179,11 @@ const SiteHeader = () => {
                     <Typography  sx={{color:'white',fontWeight:'bold'}} textAlign="center">Sign Up</Typography>
                   </Link>
                 </Button>
+                <IconButton aria-label="cart">
+                  <StyledBadge badgeContent={cartIcon} color="secondary">
+                    <ShoppingCartIcon />
+                  </StyledBadge>
+                </IconButton>
               </Box>
               </>
             )}

@@ -93,7 +93,6 @@ const NewProductForm = () => {
 
     return (
         <>
-            <Box display="flex" alignItems="center" justifyContent="center"><Typography variant="h5">Add new Product</Typography></Box>
             <Box display="flex" alignItems="center" justifyContent="center">
                 <form encType="multipart/form-data">
                     <TextField
