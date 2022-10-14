@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {useNavigate, useParams} from 'react-router';
-import axios from 'axios';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Select from '@mui/material/Select';
 import FormControl from '@mui/material/FormControl';
@@ -35,7 +33,6 @@ const NewProductForm = () => {
     useEffect(()=>{
         if (id) {
             (async() => {
-                console.log(await getProductsDetail(id))
                 setForm(await getProductsDetail(id));
             })()
         }
