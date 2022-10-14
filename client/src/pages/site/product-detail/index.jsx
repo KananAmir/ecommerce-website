@@ -10,6 +10,9 @@ import { useParams } from "react-router";
 import { getProductsDetail } from "services/product.service";
 import Stack from "@mui/material/Stack";
 import CircularProgress from "@mui/material/CircularProgress";
+import { addToCartAction } from "../../../redux/actions/cart.action";
+import { useDispatch, useSelector } from "react-redux";
+
 
 const ProductDetail = () => {
   const [product, setProductDetail] = useState({
@@ -21,6 +24,8 @@ const ProductDetail = () => {
     images: [],
   });
 
+  const cartState = useSelector(state=> state.cartReducer)
+
   const [isLoading, setIsLoading] = useState(true);
 
   let { id } = useParams();
@@ -29,10 +34,16 @@ const ProductDetail = () => {
     getProduct();
   }, []);
 
+  const dispatch = useDispatch();
+
   const getProduct = async () => {
     setProductDetail(await getProductsDetail(id));
     setIsLoading(false);
   };
+
+  const onAddToCart = () => {    
+    dispatch(addToCartAction(product))
+  }
 
   const sliderImages = [];
   product.images.forEach(item => {
@@ -82,8 +93,8 @@ const ProductDetail = () => {
                   <h3 sx={{ m: 2 }}>Category: {product.category}</h3>
                   <h4>Price: {product.price} Azn</h4>
                   <h4>Stock: {product.stock}</h4>
-                  <h4>Description: {product.desc}</h4>
-                  <Button variant="outlined">
+                  <p>Description: {product.description}</p>
+                  <Button variant="outlined" onClick={onAddToCart}>
                     Add to Cart <AddShoppingCartIcon />
                   </Button>
                 </Content>
