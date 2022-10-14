@@ -24,5 +24,5 @@ module.exports = function(app) {
   app.post("/api/auth/signin", controller.signin);
 
   //sign out
-  app.post("/api/auth/signin", controller.signout);
+  app.post("/api/auth/signout", controller.signout);
 };

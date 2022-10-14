@@ -26,6 +26,7 @@ import {
 } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
+import axios from "axios";
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
     right: -3,
@@ -58,8 +59,27 @@ const SiteHeader = () => {
   const handleClose = () => {
     setOpen(false);
   };
+  const handleLogOut = async() => {
+    await axios.post('http://localhost:8080/api/auth/signout')
+    .then(res => {
+      handleClose();
+      localStorage.removeItem('user')
+      setIsLogged(false);
+    })
+    .catch((error) => {
+    console.log('error: ',error);
+    })
+  };
 
-  const [isLogged, setIsLogged] = useState(false);
+  const checkUser = JSON.parse(localStorage.getItem('user'));
+  let loggedCheck = false;
+  if(checkUser!==null){
+    loggedCheck = true;
+  }
+  else{
+    loggedCheck = false;
+  }
+  const [isLogged, setIsLogged] = useState(loggedCheck);
   return (
     <AppBar
       sx={{
@@ -95,7 +115,14 @@ const SiteHeader = () => {
           {isLogged === true ? (
               <>
                 <Box sx={{ flexGrow: 0 }}>
-                  <Tooltip title="User Info">
+                <IconButton sx={{marginRight:'16px'}} aria-label="cart">
+                  <Link to="/cart">
+                  <StyledBadge badgeContent={ JSON.parse(localStorage.getItem('cart'))?.length} color="secondary">
+                    <ShoppingCartIcon />
+                  </StyledBadge>
+                  </Link>
+                </IconButton>
+                  <Tooltip title={`${checkUser.username}`}>
                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                       <img
                         width={40}
@@ -148,7 +175,7 @@ const SiteHeader = () => {
                         </DialogContentText>
                       </DialogContent>
                       <DialogActions>
-                        <Button autoFocus onClick={handleClose}>
+                        <Button autoFocus onClick={handleLogOut}>
                           Yes
                         </Button>
                         <Button onClick={handleClose} autoFocus>
@@ -189,12 +216,6 @@ const SiteHeader = () => {
     </AppBar>
   );
 };
-
-// <Box>
-{/* <Button>
-<Link to="/cart"><ShoppingCartIcon className={styles.carticon}></ShoppingCartIcon><sup>{}</sup></Link>
-</Button>
-</Box> */}
 
 export default SiteHeader;
  
