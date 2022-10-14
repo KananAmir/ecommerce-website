@@ -1,11 +1,11 @@
 const jwt = require("jsonwebtoken");
-const config = require("../config/auth.config.js");
+const config = require("../config/auth.config");
 const db = require("../models");
 const User = db.user;
 const Role = db.role;
 
 verifyToken = (req, res, next) => {
-  let token = req.session.token;
+  let token = req.headers["x-access-token"];
 
   if (!token) {
     return res.status(403).send({ message: "No token provided!" });
@@ -29,7 +29,7 @@ isAdmin = (req, res, next) => {
 
     Role.find(
       {
-        _id: { $in: user.roles },
+        _id: { $in: user.roles }
       },
       (err, roles) => {
         if (err) {
@@ -44,13 +44,12 @@ isAdmin = (req, res, next) => {
           }
         }
 
-        res.status(403).send({ message: "Require admin Role!" });
+        res.status(403).send({ message: "Require Admin Role!" });
         return;
       }
     );
   });
 };
-
 
 const authJwt = {
   verifyToken,
