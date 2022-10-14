@@ -229,7 +229,7 @@ const NewProductForm = () => {
                         accept="image/png, image/jpeg"
                         multiple
                         variant="outlined"
-                        // required
+                        required
                         onChange={onUploadImage}
                     />
                     <br />
