@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import LayoutAdmin from "../../../layout/LayoutAdmin";
 import {
   Table,
@@ -11,26 +11,41 @@ import {
   Button,
 } from "@mui/material";
 import styled from "@emotion/styled";
+import {deleteUser, getUsers} from "../../../services/user.service";
 
 const UsersListPage = () => {
-  const users = [
-    {
-      name: "Fazil",
-      surname: "Salamli",
-      email: "fazil_salam@mail.ru",
-      username: "Fazo",
-      address: "Kurdaxani",
-      password: "fazo_123",
-    },
-    {
-      name: "Malik",
-      surname: "Sagollu",
-      email: "malik_sagol@mail.ru",
-      username: "Mako",
-      address: "Mashdaga",
-      password: "mako_123",
-    },
-  ];
+  const [users, setUsers] = useState();
+  // const users = [
+  //   {
+  //     name: "Fazil",
+  //     surname: "Salamli",
+  //     email: "fazil_salam@mail.ru",
+  //     username: "Fazo",
+  //     address: "Kurdaxani",
+  //     password: "fazo_123",
+  //   },
+  //   {
+  //     name: "Malik",
+  //     surname: "Sagollu",
+  //     email: "malik_sagol@mail.ru",
+  //     username: "Mako",
+  //     address: "Mashdaga",
+  //     password: "mako_123",
+  //   },
+  // ];
+
+  useEffect(() => {
+    handleGet();
+  }, [])
+
+  async function handleGet(){
+    console.log(await getUsers())
+    setUsers(await getUsers());
+  }
+
+  function handleDelete(id){
+    deleteUser(id).then(() => getUsers());
+  }
 
   return (
     <LayoutAdmin>
@@ -48,11 +63,12 @@ const UsersListPage = () => {
               <TableCell align="center">Email</TableCell>
               <TableCell align="center">Address</TableCell>
               <TableCell align="center">Password</TableCell>
+              <TableCell align="center">Added Date</TableCell>
               <TableCell align="center">Delete</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {users.map((user) => (
+            {users?.map((user) => (
               <TableRow
                 key={user.email}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -63,6 +79,7 @@ const UsersListPage = () => {
                 <TableCell align="center">{user.email}</TableCell>
                 <TableCell align="center">{user.address}</TableCell>
                 <TableCell align="center">{user.password}</TableCell>
+                <TableCell align="center">{user.addDate}</TableCell>
                 <TableCell align="center">
                   <Button
                     sx={{
@@ -74,6 +91,7 @@ const UsersListPage = () => {
                         color: "white",
                       },
                     }}
+                    onClick={() => handleDelete(user._id)}
                   >
                     Delete
                   </Button>
