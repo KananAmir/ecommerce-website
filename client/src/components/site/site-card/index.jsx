@@ -43,7 +43,7 @@ const SiteCard = (props) => {
         subheader={`${props.date.slice(0, 10)} / ${props.date.slice(11, 16)}`}
       />
       <Link
-        to={`/product-detail/${props.id}/${props.name
+        to={`/product-detail/${props._id}/${props.name
           .toLocaleLowerCase("en-US")
           .split(" ")
           .join("-")}`}

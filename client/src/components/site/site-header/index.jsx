@@ -13,13 +13,9 @@ import logo from "../../../assets/shoplogo.png";
 import avatarImg from "../../../assets/default_avatar.jpg";
 import { Link } from "react-router-dom";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-<<<<<<< HEAD
 import Badge from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
 import { useSelector } from "react-redux";
-
-=======
->>>>>>> main
 
 import {
   Dialog,
@@ -30,13 +26,6 @@ import {
 } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
-
-<<<<<<< HEAD
-=======
-import Badge from '@mui/material/Badge';
-import { styled } from '@mui/material/styles';
-
->>>>>>> main
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
     right: -3,
@@ -49,7 +38,6 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 const SiteHeader = () => {
   const cartState = useSelector((state) => state.cartReducer);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const [cartIcon, setCartIcon] = useState(0);
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
@@ -103,15 +91,6 @@ const SiteHeader = () => {
               />
             </Link>
           </Button>
-          {/* User Info */}
-<<<<<<< HEAD
-=======
-          {/*<Box>*/}
-          {/*  <Button>*/}
-          {/*    <Link to="/cart"><ShoppingCartIcon className={styles.carticon}></ShoppingCartIcon><sup>0</sup></Link>*/}
-          {/*  </Button>*/}
-          {/*</Box>*/}
->>>>>>> main
          <Box>
           {isLogged === true ? (
               <>
@@ -194,17 +173,11 @@ const SiteHeader = () => {
                   </Link>
                 </Button>
                 <IconButton aria-label="cart">
-<<<<<<< HEAD
                   <Link to="/cart">
                   <StyledBadge badgeContent={cartState.length} color="secondary">
                     <ShoppingCartIcon />
                   </StyledBadge>
                   </Link>
-=======
-                  <StyledBadge badgeContent={cartIcon} color="secondary">
-                    <ShoppingCartIcon />
-                  </StyledBadge>
->>>>>>> main
                 </IconButton>
               </Box>
               </>

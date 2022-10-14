@@ -19,8 +19,7 @@ const CartPage = () => {
   const dispatch = useDispatch()
 
   const removeFromCart = (id) => {
-    dispatch(removeCartAction(id))
-    
+    dispatch(removeCartAction(id))    
   }
 
 
