@@ -12,9 +12,10 @@ import { Row, Col } from "react-grid-system";
 import styles from "./index.module.css";
 import { Helmet } from "react-helmet";
 import axios from "axios";
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate  } from "react-router-dom";
 
 const SiteSignUpPage = () => {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const handleMouseDownPassword = () => setShowPassword(!showPassword);
   const handleMouseUpPassword = () => setShowPassword(!showPassword);
@@ -48,23 +49,19 @@ const SiteSignUpPage = () => {
         .oneOf([Yup.ref("password")], "Passwords must match")
         .required("Required"),
     }),
-    onSubmit: (values) => {
-      axios
-        .post(
-         "localhost:8080/api/auth/signup",
-          values
-        )
-        .then((res) => {
-          if (res.status === 200) {
-            console.log('registered successfully!');
-            setTimeout(() => {
-              Navigate("/login");
-            }, 1500);
-          }
-        })
-        .catch((res) => {
-    });
-  },
+    onSubmit: async(values) => {
+      const token = captchaRef.current.getValue();
+      captchaRef.current.reset();
+
+      await axios.post('http://localhost:8080/api/auth/signup', {...values,token})
+      .then(res => {
+        console.log('user registered successfully! - res: ', res);
+        navigate('/')
+      })
+      .catch((error) => {
+      console.log('error: ',error);
+      })
+    }
   });
   const captchaRef = useRef(null);
   return (
@@ -253,9 +250,6 @@ const SiteSignUpPage = () => {
              
             </Col>
           </Row>
-          {
-            console.log("capthca: ", process.env.REACT_APP_SITE_KEY)
-          }
           <ReCAPTCHA style={{display:'flex',justifyContent:'center',marginTop:'10px'}} sitekey={process.env.REACT_APP_SITE_KEY} ref={captchaRef}/>
           <Box display="flex" justifyContent="center" sx={{ mt: 1 }}>
             <Button sx={{background:'darkgreen'}} variant="contained" type="submit">

@@ -13,7 +13,9 @@ import logo from "../../../assets/shoplogo.png";
 import avatarImg from "../../../assets/default_avatar.jpg";
 import { Link } from "react-router-dom";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import styles from './index.module.css'
+import Badge from '@mui/material/Badge';
+import { styled } from '@mui/material/styles';
+import { useSelector } from "react-redux";
 
 import {
   Dialog,
@@ -24,15 +26,27 @@ import {
 } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
+const StyledBadge = styled(Badge)(({ theme }) => ({
+  '& .MuiBadge-badge': {
+    right: -3,
+    top: 13,
+    border: `2px solid ${theme.palette.background.paper}`,
+    padding: '0 4px',
+  },
+}));
 
 const SiteHeader = () => {
+  const cartState = useSelector((state) => state.cartReducer);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
+
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
   const [open, setOpen] = React.useState(false);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
@@ -77,12 +91,6 @@ const SiteHeader = () => {
               />
             </Link>
           </Button>
-          {/* User Info */}
-          <Box>
-            <Button>
-              <Link to="/cart"><ShoppingCartIcon className={styles.carticon}></ShoppingCartIcon><sup>0</sup></Link>
-            </Button>
-          </Box>
          <Box>
           {isLogged === true ? (
               <>
@@ -124,7 +132,6 @@ const SiteHeader = () => {
                         Log Out
                       </Typography>
                     </MenuItem>
-
                     {/* Log Out Modal */}
                     <Dialog
                       fullScreen={fullScreen}
@@ -165,6 +172,13 @@ const SiteHeader = () => {
                     <Typography  sx={{color:'white',fontWeight:'bold'}} textAlign="center">Sign Up</Typography>
                   </Link>
                 </Button>
+                <IconButton aria-label="cart">
+                  <Link to="/cart">
+                  <StyledBadge badgeContent={ JSON.parse(localStorage.getItem('cart'))?.length} color="secondary">
+                    <ShoppingCartIcon />
+                  </StyledBadge>
+                  </Link>
+                </IconButton>
               </Box>
               </>
             )}
@@ -175,6 +189,12 @@ const SiteHeader = () => {
     </AppBar>
   );
 };
+
+// <Box>
+{/* <Button>
+<Link to="/cart"><ShoppingCartIcon className={styles.carticon}></ShoppingCartIcon><sup>{}</sup></Link>
+</Button>
+</Box> */}
 
 export default SiteHeader;
  
