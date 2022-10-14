@@ -10,6 +10,16 @@ export const getBrands = async () => {
         throw error;
     }
 }
+
+export const getBrandById = async (id) => {
+    try {
+        console.log('test', id)
+        let response = await axios.get(`${baseUrl}/${id}`);
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+}
 export const addBrand = async (data) => {
     try {
         await axios.post(baseUrl, data)

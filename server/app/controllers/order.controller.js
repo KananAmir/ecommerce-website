@@ -1,5 +1,5 @@
-const { default: mongoose } = require('mongoose')
-const { Order, default: Order } = require('../models/order.model')
+const { mongoose } = require('mongoose')
+const { Order } = require('../models/order.model')
 
 const orderController = {
   getAll: (req, res) => {
@@ -26,7 +26,7 @@ const orderController = {
     let Order = new Order({
       userId: mongoose.Types.ObjectId(req.body.userId),
       orderItems: req.body.orderItems,
-      totalPrice: req.body.totalPrice,
+      TotalPrice: req.body.totalPrice,
     })
     Order.save((err, docs) => {
       if (!err) {
@@ -34,8 +34,27 @@ const orderController = {
       }
     })
   },
-  edit: (req, res) => {},
-  delete: (req, res) => {},
+  edit: (req, res) => {
+    let id = red.params.id
+
+    Order.findByIdAndUpdate(id, {
+      orderItems: req.body.orderItems,
+      totalPrice: req.body.TotalPrice,
+      count: req.body.count,
+      status: req.body.status,
+    })
+  },
+  delete: (req, res) => {
+    let id = req.params.id
+
+    Order.findByIdAndDelete(id, (err, docs) => {
+      if (!err) {
+        res.json(docs)
+      } else {
+        res.status(500).json(err)
+      }
+    })
+  },
 }
 
 module.exports = { orderController }
