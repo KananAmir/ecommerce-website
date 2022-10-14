@@ -50,13 +50,12 @@ const SiteSignUpPage = () => {
     }),
     onSubmit: async(values) => {
       const token = captchaRef.current.getValue();
-      console.log("token: ", token);
       captchaRef.current.reset();
 
-      await axios.post(process.env.REACT_APP_API_URL, {token})
+      await axios.post('http://localhost:8080/api/auth/signup', {token})
       .then(res =>  console.log(res))
       .catch((error) => {
-      console.log(error);
+      console.log('error: ',error);
       })
     }
   });
@@ -247,9 +246,6 @@ const SiteSignUpPage = () => {
              
             </Col>
           </Row>
-          {
-            console.log("capthca: ", process.env.REACT_APP_SITE_KEY)
-          }
           <ReCAPTCHA style={{display:'flex',justifyContent:'center',marginTop:'10px'}} sitekey={process.env.REACT_APP_SITE_KEY} ref={captchaRef}/>
           <Box display="flex" justifyContent="center" sx={{ mt: 1 }}>
             <Button sx={{background:'darkgreen'}} variant="contained" type="submit">
