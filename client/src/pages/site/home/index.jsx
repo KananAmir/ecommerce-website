@@ -18,22 +18,29 @@ import {
   MenuItem,
   Box,
 } from "@mui/material";
+import {getBrands} from "../../../services/brand.service";
 
 const HomePage = () => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.productsReducer);
   const [isFiltered, setIsFiltered] = useState(false);
   const [categories, setCategories] = useState([]);
+  const [brands, setBrands] = useState([]);
   const [categoryId, setCategoryId] = useState({});
   const [search, setSearch] = useState("");
 
   useEffect(() => {
     dispatch(getAllProductsAction());
     getAllCategories();
+    getAllBrands();
   }, [dispatch]);
 
   const getAllCategories = async () => {
     setCategories(await getCategories());
+  };
+
+  const getAllBrands = async () => {
+    setBrands(await getBrands());
   };
 
   const handleChange = (event) => {
