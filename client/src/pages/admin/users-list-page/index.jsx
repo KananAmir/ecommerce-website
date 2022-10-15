@@ -52,7 +52,6 @@ const UsersListPage = () => {
               <TableCell align="center">Surname</TableCell>
               <TableCell align="center">Email</TableCell>
               <TableCell align="center">Address</TableCell>
-              <TableCell align="center">Password</TableCell>
               <TableCell align="center">Added Date</TableCell>
               <TableCell align="center">Delete</TableCell>
             </TableRow>
@@ -68,8 +67,7 @@ const UsersListPage = () => {
                 <TableCell align="center">{user.surname}</TableCell>
                 <TableCell align="center">{user.email}</TableCell>
                 <TableCell align="center">{user.address}</TableCell>
-                <TableCell align="center">{user.password}</TableCell>
-                <TableCell align="center">{user.addDate}</TableCell>
+                <TableCell align="center">{`${user.date.slice(0, 10)} / ${user.date.slice(11, 16)}`}</TableCell>
                 <TableCell align="center">
                   <Button
                     sx={{
