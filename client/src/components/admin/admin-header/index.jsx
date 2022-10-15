@@ -21,12 +21,12 @@ const AdminHeader = () => {
 
   const listOne = [
     // { title: "Home", to: "/admin", icon: <HomeIcon /> },
-    { title: "Users", to: "/admin/users-list-page", icon: <GroupIcon /> },
     {
       title: "Products",
       to: "/admin/products-list-page",
       icon: <ProductionQuantityLimitsIcon />,
     },
+    { title: "Users", to: "/admin/users-list-page", icon: <GroupIcon /> },
     { title: "Categories", to: "/admin/categories", icon: <CategoryIcon /> },
     { title: "Brands", to: "/admin/brands", icon: <BrandingWatermarkIcon /> },
   ];
