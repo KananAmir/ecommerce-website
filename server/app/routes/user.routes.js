@@ -24,4 +24,6 @@ module.exports = function(app) {
   //get users
   app.get("/users", controller.getAll);
 
+  app.delete('/users/:id', controller.delete)
+
 };
