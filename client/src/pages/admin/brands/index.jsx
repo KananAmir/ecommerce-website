@@ -33,7 +33,7 @@ const Brands = () => {
     function handleEdit(id){
         setEditButton(true);
         setId(id);
-        formRef.current.values.name = brands.find(item => item._id == id).name;
+        formRef.current.values.name = brands.find(item => item._id === id).name;
     }
 
     function handleCancel(){

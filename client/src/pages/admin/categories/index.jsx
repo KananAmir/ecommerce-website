@@ -34,7 +34,7 @@ const Categories = () => {
         formRef.current.values.name = '';
         setEditButton(true);
         setId(id);
-        formRef.current.values.name = categories.find(item => item._id == id).name;
+        formRef.current.values.name = categories.find(item => item._id === id).name;
     }
 
     function handleCancel(){
