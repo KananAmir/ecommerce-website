@@ -20,7 +20,7 @@ const AdminHeader = () => {
   const location = useLocation();
 
   const listOne = [
-    { title: "Home", to: "/admin", icon: <HomeIcon /> },
+    // { title: "Home", to: "/admin", icon: <HomeIcon /> },
     { title: "Users", to: "/admin/users-list-page", icon: <GroupIcon /> },
     {
       title: "Products",

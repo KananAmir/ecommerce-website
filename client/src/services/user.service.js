@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-let baseUrl = `http://localhost:8080/user`;
+let baseUrl = `http://localhost:8080/users`;
 
 export const getUsers = async () => {
     try {

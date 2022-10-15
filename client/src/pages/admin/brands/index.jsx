@@ -5,7 +5,6 @@ import LayoutAdmin from "../../../layout/LayoutAdmin";
 import {Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow,
     Dialog, DialogActions, DialogContent, DialogContentText} from "@mui/material";
 import {addBrand, deleteBrand, editBrand, getBrands} from "../../../services/brand.service";
-import {deleteCategory} from "../../../services/category.service";
 
 const CategoriesSchema = Yup.object().shape({
     name: Yup.string()

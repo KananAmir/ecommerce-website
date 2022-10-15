@@ -8,44 +8,34 @@ import {
   TableHead,
   TableRow,
   Paper,
-  Button,
+  Button, DialogContent, DialogContentText, DialogActions, Dialog,
 } from "@mui/material";
 import styled from "@emotion/styled";
 import {deleteUser, getUsers} from "../../../services/user.service";
+import {deleteBrand} from "../../../services/brand.service";
 
 const UsersListPage = () => {
   const [users, setUsers] = useState();
-  // const users = [
-  //   {
-  //     name: "Fazil",
-  //     surname: "Salamli",
-  //     email: "fazil_salam@mail.ru",
-  //     username: "Fazo",
-  //     address: "Kurdaxani",
-  //     password: "fazo_123",
-  //   },
-  //   {
-  //     name: "Malik",
-  //     surname: "Sagollu",
-  //     email: "malik_sagol@mail.ru",
-  //     username: "Mako",
-  //     address: "Mashdaga",
-  //     password: "mako_123",
-  //   },
-  // ];
+  const [open, setOpen] = React.useState(false);
+  const [id, setId] = useState();
 
   useEffect(() => {
     handleGet();
   }, [])
 
   async function handleGet(){
-    console.log(await getUsers())
     setUsers(await getUsers());
   }
 
   function handleDelete(id){
-    deleteUser(id).then(() => getUsers());
+    setId(id);
+    setOpen(true);
   }
+
+  const handleYeap = () => {
+    setOpen(false);
+    deleteUser(id).then(() => getUsers());
+  };
 
   return (
     <LayoutAdmin>
@@ -101,6 +91,22 @@ const UsersListPage = () => {
           </TableBody>
         </Table>
       </TableContainer>
+      <Dialog
+          open={open}
+          onClose={() => setOpen(false)}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+      >
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Are you sure about deleting this user?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setOpen(false)}>Nope</Button>
+          <Button onClick={handleYeap}>Yeap</Button>
+        </DialogActions>
+      </Dialog>
     </LayoutAdmin>
   );
 };

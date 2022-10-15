@@ -93,7 +93,7 @@ const ProductDetail = () => {
                   <h3 sx={{ m: 2 }}>Category: {product.category}</h3>
                   <h4>Price: {product.price} Azn</h4>
                   <h4>Stock: {product.stock}</h4>
-                  <p>Description: {product.description}</p>
+                  <p>Description: {product.desc}</p>
                   <Button variant="outlined" onClick={onAddToCart}>
                     Add to Cart <AddShoppingCartIcon />
                   </Button>

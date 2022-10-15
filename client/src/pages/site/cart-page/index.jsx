@@ -1,15 +1,8 @@
 import React, { useEffect } from 'react'
 import LayoutSite from "../../../layout/LatoutSite";
-import Box from '@mui/material/Box';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import Button from '@mui/material/Button';
-import { addToCartAction, removeCartAction } from "../../../redux/actions/cart.action";
+import { Box, Table, TableBody, TableCell, TableContainer, TableHead,
+        TableRow, Paper, Button } from '@mui/material';
+import { removeCartAction } from "../../../redux/actions/cart.action";
 import { useDispatch, useSelector } from "react-redux";
 
 const CartPage = () => {
@@ -17,9 +10,6 @@ const CartPage = () => {
   const stateCart = useSelector(state => state.cartReducer);
 
   let cartState = JSON.parse(localStorage.getItem('cart'));
-  // useEffect(() => {
-  //   console.log(cartState)
-  // }, [stateCart])
 
   const removeFromCart = (id) => {
     dispatch(removeCartAction(id))
@@ -44,8 +34,8 @@ const CartPage = () => {
         <TableBody>
           {cartState?.map((row) => (
             <TableRow
-              key={row.id}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              key={row._id}
+              sx={{ '&:last-child td, &:last-child th': { border: 0 }}}
             >
               <TableCell component="th" scope="row">
                 {row.name}
